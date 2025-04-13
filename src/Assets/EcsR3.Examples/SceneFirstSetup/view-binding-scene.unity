@@ -365,7 +365,7 @@ MonoBehaviour:
   CollectionId: 0
   EntityId: 0
   Components:
-  - EcsRx.Examples.SceneFirstSetup.Components.TestComponent
+  - EcsR3.Examples.SceneFirstSetup.Components.TestComponent
   ComponentEditorState:
   - "{\r\n\t\"Name\":\"test\"\t, \r\n\t\"Age\":23\t, \r\n\t\"IsHappy\":true\t, \r\n\t\"Roundness\":3}\r\n"
   HasDeserialized: 1
