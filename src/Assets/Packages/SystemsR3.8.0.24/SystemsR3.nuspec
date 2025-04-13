@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SystemsR3</id>
+    <version>8.0.24</version>
+    <title>SystemsR3</title>
+    <authors>Grofit (LP)</authors>
+    <licenseUrl>https://github.com/ecsrx/ecsr3/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ecsrx/ecsr3</projectUrl>
+    <description>A set of reactive systems to develop games or applications using R3</description>
+    <tags>r3 reactive patterns ioc game-development xna monogame unity</tags>
+    <repository type="git" commit="fc30567bcc9598aca0439508b9235c3cb9de7a41" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="R3" version="1.2.9" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

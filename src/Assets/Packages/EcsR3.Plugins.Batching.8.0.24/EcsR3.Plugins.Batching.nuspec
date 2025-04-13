@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>EcsR3.Plugins.Batching</id>
+    <version>8.0.24</version>
+    <title>EcsR3.Plugins.Batching</title>
+    <authors>Grofit (LP)</authors>
+    <licenseUrl>https://github.com/ecsrx/ecsr3/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ecsrx/ecsr3</projectUrl>
+    <description>EcsRx plugin to allow batching of components in systems</description>
+    <tags>ecs r3 reactive patterns ioc game-development xna monogame unity</tags>
+    <repository type="git" commit="fc30567bcc9598aca0439508b9235c3cb9de7a41" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="EcsR3.Infrastructure" version="8.0.24" exclude="Build,Analyzers" />
+        <dependency id="EcsR3" version="8.0.24" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
