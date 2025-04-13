@@ -20,8 +20,8 @@ namespace EcsR3.Zenject.Dependencies
         public object Resolve(Type type, string name = null)
         {
             return string.IsNullOrEmpty(name) ? 
-                _container.Resolve(type) : 
-                _container.ResolveId(type, name);
+                _container.TryResolve(type) : 
+                _container.TryResolveId(type, name);
         }
         
         public IEnumerable ResolveAll(Type type)

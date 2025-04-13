@@ -317,20 +317,8 @@
     <Reference Include="NuGetForUnity.PluginAPI">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\NuGet\Editor\NuGetForUnity.PluginAPI.dll</HintPath>
     </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
-    </Reference>
     <Reference Include="NugetForUnity">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\NuGet\Editor\NugetForUnity.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.8.0.24\lib\netstandard2.1\EcsR3.dll</HintPath>

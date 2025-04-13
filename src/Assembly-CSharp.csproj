@@ -380,18 +380,6 @@
     <Reference Include="Zenject-usage">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
     </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-    </Reference>
     <Reference Include="EcsR3">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.8.0.24\lib\netstandard2.1\EcsR3.dll</HintPath>
     </Reference>
@@ -853,21 +841,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
-      <Project>{df9a77a2-7348-06dd-56b6-bf21c8c3616d}</Project>
-      <Name>Zenject-ReflectionBaking-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject.csproj">
-      <Project>{551e4f3d-379b-1ace-5045-137ed0a1d4c9}</Project>
-      <Name>Zenject</Name>
-    </ProjectReference>
     <ProjectReference Include="Zenject-Editor.csproj">
       <Project>{23c2b8d5-60fd-e494-8328-3d060e400720}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{521d98d1-267c-2f4a-54b1-3f2018ff6872}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{551e4f3d-379b-1ace-5045-137ed0a1d4c9}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,4 @@
-﻿using EcsR3.Infrastructure.Extensions;
-using EcsR3.Zenject;
+﻿using EcsR3.Zenject;
 
 namespace EcsR3.Examples.PooledViews
 {

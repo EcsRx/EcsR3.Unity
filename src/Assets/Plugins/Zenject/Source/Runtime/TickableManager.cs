@@ -4,7 +4,7 @@ using System.Linq;
 using ModestTree;
 using ModestTree.Util;
 #if ZEN_SIGNALS_ADD_UNIRX
-using R3;
+using UniRx;
 #endif
 
 namespace Zenject

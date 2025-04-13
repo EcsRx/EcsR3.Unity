@@ -684,7 +684,7 @@ MonoBehaviour:
   CollectionId: 0
   EntityId: 0
   Components:
-  - EcsRx.Examples.PooledViews.Components.SpawnerComponent
+  - EcsR3.Examples.PooledViews.Components.SpawnerComponent
   ComponentEditorState:
   - "{\r\n\t\"SpawnRate\":\"0.5\"}\r\n"
   HasDeserialized: 0

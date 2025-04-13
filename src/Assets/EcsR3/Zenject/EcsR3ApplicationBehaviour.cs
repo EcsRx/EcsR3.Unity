@@ -31,7 +31,12 @@ namespace EcsR3.Zenject
             DependencyRegistry = new ZenjectDependencyRegistry(_sceneContext.Container);
             StartApplication();
         }
-        
+
+        private void OnDestroy()
+        {
+            StopApplication();
+        }
+
         /// <summary>
         /// Resolve any dependencies the application needs
         /// </summary>

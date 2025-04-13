@@ -23,7 +23,8 @@ namespace EcsR3.Examples.CustomGameObjectHandling.Systems
 
         public void Process(IEntity entity, ElapsedTime elapsedTime)
         {
-            var entityPosition = entity.GetComponent<CustomViewComponent>().CustomView.transform.position;
+            var viewComponent = entity.GetComponent<CustomViewComponent>();
+            var entityPosition = viewComponent.CustomView.transform.position;
             var trailPosition = entityPosition + (Vector3.back*5.0f);
             trailPosition += Vector3.up*2.0f;
 

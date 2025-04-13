@@ -3,6 +3,8 @@ using EcsR3.Examples.ManuallyRegisterSystems.Systems;
 using EcsR3.Extensions;
 using EcsR3.Plugins.Views.Components;
 using EcsR3.Zenject;
+using SystemsR3.Systems;
+using UnityEngine;
 
 namespace EcsR3.Examples.ManuallyRegisterSystems
 {
@@ -13,7 +15,7 @@ namespace EcsR3.Examples.ManuallyRegisterSystems
         {
             DependencyRegistry.Bind<RandomMovementSystem>();
         }
-
+        
         // We override this to manually control how systems start
         protected override void StartSystems()
         {
