@@ -1,4 +1,4 @@
-# EcsRx.Unity
+# EcsR3.Unity
 
 [EcsR3](https://github.com/EcsRx/ecsr3) is a reactive take on the common ECS pattern with a well separated design, this library builds off that basis and adds unity specific helpers and functionality.
 
