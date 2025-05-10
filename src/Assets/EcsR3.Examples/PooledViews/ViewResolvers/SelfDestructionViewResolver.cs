@@ -15,7 +15,7 @@ namespace EcsR3.Examples.PooledViews.ViewResolvers
     public class SelfDestructionViewResolver : PooledPrefabViewResolverSystem
     {
         public override IGroup Group { get; } = new Group(typeof(SelfDestructComponent), typeof(ViewComponent));
-        public override PoolConfig PoolConfig { get; } = new PoolConfig(0, 5);
+        public override PoolConfig PoolConfig { get; } = new PoolConfig(10, 5);
 
         public SelfDestructionViewResolver(IUnityInstantiator instantiator, IEntityCollection entityCollection, IEventSystem eventSystem)
             : base(instantiator, entityCollection, eventSystem)
