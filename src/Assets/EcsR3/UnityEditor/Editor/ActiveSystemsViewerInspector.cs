@@ -63,7 +63,6 @@ namespace EcsR3.UnityEditor.Editor
                             EditorGUILayout.Foldout(systemVisibleState.ShowImplementations, "Implementations", true);
                         EditorGUI.indentLevel--;
                     });
-                    Debug.Log("STATE IS " + systemVisibleState.ShowImplementations);
 
                     if (systemVisibleState.ShowImplementations)
                     {
