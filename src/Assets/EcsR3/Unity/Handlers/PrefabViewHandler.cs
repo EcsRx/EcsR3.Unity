@@ -15,13 +15,13 @@ namespace EcsR3.Unity.Handlers
             PrefabTemplate = prefabTemplate;
         }
         
-        public void DestroyView(object view)
+        public virtual void DestroyView(object view)
         { Object.Destroy(view as GameObject); }
 
-        public void SetActiveState(object view, bool isActive)
+        public virtual void SetActiveState(object view, bool isActive)
         { (view as GameObject).SetActive(isActive); }
 
-        public object CreateView()
+        public virtual object CreateView()
         {
             var createdPrefab = Instantiator.InstantiatePrefab(PrefabTemplate);
             createdPrefab.transform.position = Vector3.zero;

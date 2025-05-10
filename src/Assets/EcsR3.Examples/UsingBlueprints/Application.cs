@@ -11,10 +11,8 @@ namespace EcsR3.Examples.UsingBlueprints
     {
         protected override void ApplicationStarted()
         {
-            var defaultPool = EntityDatabase.GetCollection();
-
-            defaultPool.CreateEntity(new PlayerBlueprint("Player One"));
-            defaultPool.CreateEntity(new PlayerBlueprint("Player Two", 150.0f));
+            EntityCollection.CreateEntity(new PlayerBlueprint("Player One"));
+            EntityCollection.CreateEntity(new PlayerBlueprint("Player Two", 150.0f));
         }
     }
 }

@@ -1,9 +1,8 @@
+using EcsR3.Collections.Entity;
 using SystemsR3.Events;
-using EcsR3.Collections.Database;
 using EcsR3.Entities;
-using EcsR3.Extensions;
-using EcsR3.Plugins.Views.Pooling;
 using EcsR3.Plugins.Views.Systems;
+using EcsR3.Plugins.Views.ViewHandlers;
 using EcsR3.Unity.Dependencies;
 using EcsR3.Unity.Handlers;
 using EcsR3.Unity.MonoBehaviours;
@@ -14,18 +13,17 @@ namespace EcsR3.Unity.Systems
     public abstract class PooledPrefabViewResolverSystem : PooledViewResolverSystem
     {
         public IUnityInstantiator Instantiator { get; }
-        public IEntityDatabase EntityDatabase { get; }
+        public IEntityCollection EntityCollection { get; }
         
         protected abstract GameObject PrefabTemplate { get; }
-        protected abstract int PoolIncrementSize { get; }
 
-        protected override IViewPool CreateViewPool()
-        { return new ViewPool(PoolIncrementSize, new PrefabViewHandler(Instantiator, PrefabTemplate)); }
+        public override IViewHandler CreateViewHandler()
+        { return new PrefabViewHandler(Instantiator, PrefabTemplate); }
 
-        protected PooledPrefabViewResolverSystem(IUnityInstantiator instantiator, IEntityDatabase entityDatabase, IEventSystem eventSystem) : base(eventSystem) 
+        protected PooledPrefabViewResolverSystem(IUnityInstantiator instantiator, IEntityCollection entityCollection, IEventSystem eventSystem) : base(eventSystem) 
         {
             Instantiator = instantiator;
-            EntityDatabase = entityDatabase;            
+            EntityCollection = entityCollection;            
         }
 
         protected abstract void OnViewAllocated(GameObject view, IEntity entity);
@@ -47,9 +45,8 @@ namespace EcsR3.Unity.Systems
         {
             var gameObject = view as GameObject;
             var entityView = gameObject.GetComponent<EntityView>();
-            var entityCollection = EntityDatabase.GetCollectionFor(entity);
             entityView.Entity = entity;
-            entityView.EntityCollection = entityCollection;
+            entityView.EntityCollection = EntityCollection;
 
             OnViewAllocated(gameObject, entity);
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using EcsR3.Collections.Database;
 using EcsR3.Collections.Entity;
 using EcsR3.Entities;
 using EcsR3.Examples.PooledViews.Components;
@@ -14,10 +13,10 @@ namespace EcsR3.Examples.PooledViews.Systems
     public class SelfDestructionSystem : IReactToEntitySystem
     {
         public IGroup Group => new Group(typeof(SelfDestructComponent), typeof(ViewComponent));
-        private readonly IEntityCollection _defaultCollection;
+        private readonly IEntityCollection EntityCollection;
 
-        public SelfDestructionSystem(IEntityDatabase entityDatabase)
-        { _defaultCollection = entityDatabase.GetCollection(); }
+        public SelfDestructionSystem(IEntityCollection entityCollection)
+        { EntityCollection = entityCollection; }
 
         public Observable<IEntity> ReactToEntity(IEntity entity)
         {
@@ -26,6 +25,6 @@ namespace EcsR3.Examples.PooledViews.Systems
         }
 
         public void Process(IEntity entity)
-        { _defaultCollection.RemoveEntity(entity.Id); }
+        { EntityCollection.RemoveEntity(entity.Id); }
     }
 }

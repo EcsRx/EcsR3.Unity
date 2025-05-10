@@ -47,12 +47,6 @@ namespace EcsR3.UnityEditor.Editor
                     var entityId = _entityView.Entity.Id.ToString();
                     EditorGUIHelper.WithLabelField("Entity Id", entityId);
                 });
-
-                EditorGUIHelper.WithVerticalLayout(() =>
-                {
-                    var collectionId = _entityView.EntityCollection.Id.ToString();
-                    EditorGUIHelper.WithLabelField("Collection Id", collectionId);
-                });
             });
         }
         

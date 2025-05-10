@@ -22,14 +22,51 @@ namespace EcsR3.UnityEditor.Editor
                 return;
             }
             
+            var requiredComponentStyle = new GUIStyle() { };
+            requiredComponentStyle.normal.textColor = Color.green.Desaturate(0.5f);
+            var excludedComponentStyle = new GUIStyle() { };
+            excludedComponentStyle.normal.textColor = Color.red.Desaturate(0.5f);
+            
             EditorGUIHelper.WithLabel("Running Systems");
             EditorGUILayout.Space();
             foreach (var system in executor.Systems)
             {
+                var systemType = system.GetType();
                 EditorGUIHelper.WithVerticalBoxLayout(() =>
                 {
                     GUI.backgroundColor = system.GetHashCode().ToMutedColor();
-                    EditorGUILayout.LabelField(system.GetType().Name);
+                    EditorGUILayout.LabelField(systemType.Name);
+
+                    EditorGUILayout.LabelField("Implements");
+                    
+                    EditorGUIHelper.WithVerticalBoxLayout(() =>
+                    {
+                        
+                    });
+                    
+                    if (system is IGroupSystem groupSystem)
+                    {
+                        EditorGUILayout.LabelField("System Components");
+
+                        EditorGUIHelper.WithVerticalBoxLayout(() =>
+                        {
+                            foreach (var componentType in groupSystem.Group.RequiredComponents)
+                            {
+                                EditorGUILayout.LabelField(componentType.Name, requiredComponentStyle);
+                            }
+                        });
+
+                        if (groupSystem.Group.ExcludedComponents.Length > 0)
+                        {
+                            EditorGUIHelper.WithVerticalBoxLayout(() =>
+                            {
+                                foreach (var componentType in groupSystem.Group.ExcludedComponents)
+                                {
+                                    EditorGUILayout.LabelField(componentType.Name, excludedComponentStyle);
+                                }
+                            });
+                        }
+                    }
                 });
             }
         }

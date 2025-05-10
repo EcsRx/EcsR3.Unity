@@ -11,11 +11,10 @@ namespace EcsR3.Examples.GameObjectLinking
     {
         protected override void ApplicationStarted()
         {
-            var defaultPool = EntityDatabase.GetCollection();
-            var entity = defaultPool.CreateEntity();
+            var entity = EntityCollection.CreateEntity();
 
             var existingGameObject = GameObject.Find("ExistingGameObject");
-            existingGameObject.LinkEntity(entity, defaultPool);
+            existingGameObject.LinkEntity(entity, EntityCollection);
         }
     }
 }

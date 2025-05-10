@@ -1,5 +1,4 @@
 ﻿using System;
-using EcsR3.Collections.Database;
 using EcsR3.Collections.Entity;
 using EcsR3.Entities;
 using EcsR3.Examples.PooledViews.Blueprints;
@@ -15,12 +14,12 @@ namespace EcsR3.Examples.PooledViews.Systems
 {
     public class SpawnSystem : IReactToEntitySystem
     {
-        private readonly IEntityCollection _defaultCollection;
+        private readonly IEntityCollection EntityCollection;
 
         public IGroup Group => new Group(typeof(SpawnerComponent), typeof(ViewComponent));
 
-        public SpawnSystem(IEntityDatabase entityDatabase)
-        { _defaultCollection = entityDatabase.GetCollection(); }
+        public SpawnSystem(IEntityCollection entityCollection)
+        { EntityCollection = entityCollection; }
 
         public Observable<IEntity> ReactToEntity(IEntity entity)
         {
@@ -33,7 +32,7 @@ namespace EcsR3.Examples.PooledViews.Systems
             var viewComponent = entity.GetComponent<ViewComponent>();
             var view = viewComponent.View as GameObject;
             var blueprint = new SelfDestructBlueprint(view.transform.position);
-            _defaultCollection.CreateEntity(blueprint);
+            EntityCollection.CreateEntity(blueprint);
         }
     }
 }
