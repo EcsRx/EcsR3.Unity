@@ -16,6 +16,8 @@ namespace EcsR3.UnityEditor.Editor
             var activeSystemsViewer = (ActiveSystemsViewer)target;
             if(activeSystemsViewer == null) {  return; }
             var executor = activeSystemsViewer.SystemExecutor;
+            var observableGroupManager = activeSystemsViewer.ObservableGroupManager;
+            var systemVisibleStates = activeSystemsViewer.SystemVisibleStates;
 
             if (executor == null)
             {
@@ -32,22 +34,50 @@ namespace EcsR3.UnityEditor.Editor
             EditorGUILayout.Space();
             foreach (var system in executor.Systems)
             {
+                if (!systemVisibleStates.ContainsKey(system))
+                { systemVisibleStates.Add(system, (false, false)); }
+                
+                var systemVisibleState = systemVisibleStates[system];
                 var systemType = system.GetType();
+                var groupedSystem = system as IGroupSystem;
                 EditorGUIHelper.WithVerticalBoxLayout(() =>
                 {
                     GUI.backgroundColor = system.GetHashCode().ToMutedColor();
-                    EditorGUILayout.LabelField(systemType.Name);
 
-                    EditorGUILayout.LabelField("Implements");
-                    
-                    EditorGUIHelper.WithVerticalBoxLayout(() =>
+                    EditorGUIHelper.WithHorizontalBoxLayout(() =>
                     {
-                        var interfacesImplemented = system.GetSystemTypesImplemented();
-                        foreach (var interfaceImplemented in interfacesImplemented)
+                        EditorGUILayout.LabelField(systemType.Name);
+                        if (groupedSystem != null)
                         {
-                            EditorGUILayout.LabelField(interfaceImplemented.Name, requiredComponentStyle);
+                            var observableGroup = observableGroupManager.GetObservableGroup(groupedSystem.Group);
+                            EditorGUILayout.LabelField($"{observableGroup.Count} Entities");
                         }
                     });
+
+                    EditorGUIHelper.WithHorizontalBoxLayout(() =>
+                    {
+                        var iconStyle = new GUIStyle { fontSize = 12 };
+                        iconStyle.normal.textColor = Color.white;
+                        EditorGUI.indentLevel++;
+                        systemVisibleState.ShowImplementations =
+                            EditorGUILayout.Foldout(systemVisibleState.ShowImplementations, "Implementations", true);
+                        EditorGUI.indentLevel--;
+                    });
+                    Debug.Log("STATE IS " + systemVisibleState.ShowImplementations);
+
+                    if (systemVisibleState.ShowImplementations)
+                    {
+                        EditorGUIHelper.WithVerticalBoxLayout(() =>
+                        {
+                            var interfacesImplemented = system.GetSystemTypesImplemented();
+                            foreach (var interfaceImplemented in interfacesImplemented)
+                            {
+                                EditorGUILayout.LabelField(interfaceImplemented.Name, requiredComponentStyle);
+                            }
+                        });
+                    }
+                    /*
+                    
                     
                     if (system is IGroupSystem groupSystem)
                     {
@@ -71,7 +101,7 @@ namespace EcsR3.UnityEditor.Editor
                                 }
                             });
                         }
-                    }
+                    }*/
                 });
             }
         }
