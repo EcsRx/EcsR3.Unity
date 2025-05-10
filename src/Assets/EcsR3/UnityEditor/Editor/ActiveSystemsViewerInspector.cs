@@ -2,6 +2,7 @@
 using EcsR3.UnityEditor.Editor.Extensions;
 using EcsR3.UnityEditor.Editor.Helpers;
 using EcsR3.UnityEditor.MonoBehaviours;
+using SystemsR3.Extensions;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,7 +42,11 @@ namespace EcsR3.UnityEditor.Editor
                     
                     EditorGUIHelper.WithVerticalBoxLayout(() =>
                     {
-                        
+                        var interfacesImplemented = system.GetSystemTypesImplemented();
+                        foreach (var interfaceImplemented in interfacesImplemented)
+                        {
+                            EditorGUILayout.LabelField(interfaceImplemented.Name, requiredComponentStyle);
+                        }
                     });
                     
                     if (system is IGroupSystem groupSystem)
