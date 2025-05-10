@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using EcsR3.Collections;
-using EcsR3.Collections.Database;
+using EcsR3.Collections.Entity;
 using EcsR3.Infrastructure;
 using EcsR3.Infrastructure.Modules;
 using EcsR3.Plugins.Batching;
@@ -27,7 +27,7 @@ namespace EcsR3.Unity
         
         public ISystemExecutor SystemExecutor { get; private set; }
         public IEventSystem EventSystem { get; private set; }
-        public IEntityDatabase EntityDatabase { get; private set; }
+        public IEntityCollection EntityCollection { get; private set; }
         public IObservableGroupManager ObservableGroupManager { get; private set; }
         public IEnumerable<ISystemsR3Plugin> Plugins => _plugins;
         
@@ -84,7 +84,7 @@ namespace EcsR3.Unity
         {
             SystemExecutor = DependencyResolver.Resolve<ISystemExecutor>();
             EventSystem = DependencyResolver.Resolve<IEventSystem>();
-            EntityDatabase = DependencyResolver.Resolve<IEntityDatabase>();
+            EntityCollection = DependencyResolver.Resolve<IEntityCollection>();
             ObservableGroupManager = DependencyResolver.Resolve<IObservableGroupManager>();
         }
         

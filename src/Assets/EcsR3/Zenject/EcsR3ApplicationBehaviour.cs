@@ -14,7 +14,7 @@ namespace EcsR3.Zenject
         
         private void Awake()
         {
-            var sceneContexts = FindObjectsOfType<SceneContext>();
+            var sceneContexts = FindObjectsByType<SceneContext>(FindObjectsSortMode.None);
             _sceneContext = sceneContexts.FirstOrDefault();
             
             if(_sceneContext == null) 

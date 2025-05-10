@@ -1,5 +1,5 @@
-﻿using SystemsR3.Events;
-using EcsR3.Collections.Database;
+﻿using EcsR3.Collections.Entity;
+using SystemsR3.Events;
 using EcsR3.Entities;
 using EcsR3.Extensions;
 using EcsR3.Unity.Dependencies;
@@ -16,22 +16,19 @@ namespace EcsR3.Unity.Systems
 {
     public abstract class PrefabViewResolverSystem : ViewResolverSystem
     {
-        public IEntityDatabase EntityDatabase { get; }
+        public IEntityCollection EntityCollection { get; }
         public IUnityInstantiator Instantiator { get; }
 
         protected abstract GameObject PrefabTemplate { get; }
 
-        protected PrefabViewResolverSystem(IEntityDatabase entityDatabase, IEventSystem eventSystem, IUnityInstantiator instantiator) : base(eventSystem)
+        protected PrefabViewResolverSystem(IEntityCollection entityCollection, IEventSystem eventSystem, IUnityInstantiator instantiator) : base(eventSystem)
         {
-            EntityDatabase = entityDatabase;
+            EntityCollection = entityCollection;
             Instantiator = instantiator;
-            ViewHandler = CreateViewHandler();
         }
 
-        protected IViewHandler CreateViewHandler()
+        public override IViewHandler CreateViewHandler()
         { return new PrefabViewHandler(Instantiator, PrefabTemplate); }
-
-        public override IViewHandler ViewHandler { get; }
 
         protected override void OnViewCreated(IEntity entity, ViewComponent viewComponent)
         {
@@ -52,8 +49,7 @@ namespace EcsR3.Unity.Systems
             {
                 entityBinding = gameObject.AddComponent<EntityView>();
                 entityBinding.Entity = entity;
-
-                entityBinding.EntityCollection = EntityDatabase.GetCollectionFor(entity);
+                entityBinding.EntityCollection = EntityCollection;
             }
 
             if (viewComponent.DestroyWithView)

@@ -19,7 +19,6 @@ namespace EcsR3.UnityEditor.Editor
         {
             this.UseVerticalBoxLayout(() =>
             {
-                _registerAsEntity.CollectionId = this.WithNumberField("Override Collection Id:", _registerAsEntity.CollectionId);
                 _registerAsEntity.EntityId = this.WithNumberField("Override Entity Id:", _registerAsEntity.EntityId);
             });
         }

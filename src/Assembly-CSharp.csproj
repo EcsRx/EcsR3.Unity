@@ -95,7 +95,7 @@
     <Compile Include="Assets\EcsR3.Examples\CustomGameObjectHandling\Application.cs" />
     <Compile Include="Assets\EcsR3.Examples\GameObjectLinking\Application.cs" />
     <Compile Include="Assets\EcsR3\Unity\Extensions\IUnityInstantiatorExtensions.cs" />
-    <Compile Include="Assets\EcsR3\UnityEditor\MonoBehaviours\EntityDatabaseViewer.cs" />
+    <Compile Include="Assets\EcsR3\UnityEditor\MonoBehaviours\EntityCollectionViewer.cs" />
     <Compile Include="Assets\EcsR3.Examples\RandomReactions\Systems\CubeColourChangerSystem.cs" />
     <Compile Include="Assets\EcsR3.Examples\PooledViews\ViewResolvers\SelfDestructionViewResolver.cs" />
     <Compile Include="Assets\EcsR3.Examples\PluginExample\HelloWorldPlugin\components\SayHelloWorldComponent.cs" />
@@ -122,6 +122,7 @@
     <Compile Include="Assets\EcsR3\Unity\Scheduling\UnityUpdateScheduler.cs" />
     <Compile Include="Assets\EcsR3\Zenject\Dependencies\ZenjectDependencyResolver.cs" />
     <Compile Include="Assets\EcsR3.Examples\SimpleMovement\Systems\CameraFollowSystem.cs" />
+    <Compile Include="Assets\EcsR3\UnityEditor\MonoBehaviours\ObservableGroupViewer.cs" />
     <None Include="Assets\Packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.xml" />
     <None Include="Assets\Packages\System.Runtime.CompilerServices.Unsafe.6.0.0\useSharedDesignerContext.txt" />
     <None Include="Assets\Packages\System.Threading.Channels.8.0.0\useSharedDesignerContext.txt" />
@@ -129,8 +130,8 @@
     <None Include="Assets\Packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.xml" />
     <None Include="Assets\Packages\Microsoft.Bcl.TimeProvider.8.0.0\lib\net462\Microsoft.Bcl.TimeProvider.xml" />
     <None Include="Assets\Packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.xml" />
-    <None Include="Assets\Packages\R3.1.2.9\lib\netstandard2.1\R3.xml" />
     <None Include="Assets\Packages\Microsoft.Bcl.TimeProvider.8.0.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\Packages\R3.1.3.0\lib\netstandard2.1\R3.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -380,12 +381,6 @@
     <Reference Include="Zenject-usage">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
     </Reference>
-    <Reference Include="EcsR3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.8.0.24\lib\netstandard2.1\EcsR3.dll</HintPath>
-    </Reference>
-    <Reference Include="SystemsR3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.8.0.24\lib\netstandard2.1\SystemsR3.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -398,26 +393,32 @@
     <Reference Include="System.Threading.Channels">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
     </Reference>
-    <Reference Include="R3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\R3.1.2.9\lib\netstandard2.1\R3.dll</HintPath>
-    </Reference>
-    <Reference Include="EcsR3.Infrastructure">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Infrastructure.8.0.24\lib\netstandard2.1\EcsR3.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="SystemsR3.Infrastructure">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Infrastructure.8.0.24\lib\netstandard2.1\SystemsR3.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="EcsR3.Plugins.Batching">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Batching.8.0.24\lib\netstandard2.1\EcsR3.Plugins.Batching.dll</HintPath>
-    </Reference>
     <Reference Include="EcsR3.Plugins.Views">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Views.8.0.24\lib\netstandard2.1\EcsR3.Plugins.Views.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Views.9.0.45\lib\netstandard2.1\EcsR3.Plugins.Views.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemsR3">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.9.0.45\lib\netstandard2.1\SystemsR3.dll</HintPath>
+    </Reference>
+    <Reference Include="EcsR3">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.9.0.45\lib\netstandard2.1\EcsR3.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3.Plugins.Transforms">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Plugins.Transforms.8.0.24\lib\netstandard2.1\SystemsR3.Plugins.Transforms.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Plugins.Transforms.9.0.45\lib\netstandard2.1\SystemsR3.Plugins.Transforms.dll</HintPath>
+    </Reference>
+    <Reference Include="EcsR3.Plugins.Batching">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Batching.9.0.45\lib\netstandard2.1\EcsR3.Plugins.Batching.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Plugins.Transforms">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Transforms.8.0.24\lib\netstandard2.1\EcsR3.Plugins.Transforms.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Transforms.9.0.45\lib\netstandard2.1\EcsR3.Plugins.Transforms.dll</HintPath>
+    </Reference>
+    <Reference Include="EcsR3.Infrastructure">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Infrastructure.9.0.45\lib\netstandard2.1\EcsR3.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="R3">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\R3.1.3.0\lib\netstandard2.1\R3.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemsR3.Infrastructure">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Infrastructure.9.0.45\lib\netstandard2.1\SystemsR3.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.28f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -800,17 +801,23 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="R3.Unity.TextMeshPro">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\R3.Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    <Reference Include="R3.Unity">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\R3.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
@@ -833,21 +840,15 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="R3.Unity">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\R3.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="R3.Unity.TextMeshPro">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\R3.Unity.TextMeshPro.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{23c2b8d5-60fd-e494-8328-3d060e400720}</Project>
-      <Name>Zenject-Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Zenject.csproj">
       <Project>{551e4f3d-379b-1ace-5045-137ed0a1d4c9}</Project>
       <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{23c2b8d5-60fd-e494-8328-3d060e400720}</Project>
+      <Name>Zenject-Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

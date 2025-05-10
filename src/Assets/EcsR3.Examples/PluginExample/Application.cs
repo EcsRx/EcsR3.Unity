@@ -16,8 +16,7 @@ namespace EcsR3.Examples.PluginExample
         
         protected override void ApplicationStarted()
         {
-            var defaultPool = EntityDatabase.GetCollection();
-            var entity = defaultPool.CreateEntity();
+            var entity = EntityCollection.CreateEntity();
             entity.AddComponent<SayHelloWorldComponent>();
         }
     }

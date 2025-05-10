@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using EcsR3.Collections.Database;
 using EcsR3.Collections.Entity;
 using EcsR3.Components;
 using EcsR3.Entities;
@@ -18,10 +16,7 @@ namespace EcsR3.UnityEditor.MonoBehaviours
     public class RegisterAsEntity : MonoBehaviour
     {
         [Inject]
-        public IEntityDatabase EntityDatabase { get; private set; }
-
-        [SerializeField]
-        public int CollectionId;
+        public IEntityCollection EntityCollection { get; private set; }
         
         [SerializeField]
         public int EntityId;
@@ -77,23 +72,12 @@ namespace EcsR3.UnityEditor.MonoBehaviours
             HasDeserialized = true;
         }
         
-        private IEntityCollection GetCollectionManager()
-        {
-            if (CollectionId == 0)
-            { return EntityDatabase.GetCollection(); }
-
-            if (EntityDatabase.Collections.All(x => x.Id != CollectionId))
-            { return EntityDatabase.CreateCollection(CollectionId); }
-
-            return EntityDatabase.GetCollection(CollectionId);
-        }
-
-        public IEntity CreateEntity(IEntityCollection collectionToUse)
+        public IEntity CreateEntity()
         {
             if(EntityId > 0)
-            { return collectionToUse.CreateEntity(null, EntityId); }
+            { return EntityCollection.CreateEntity(null, EntityId); }
 
-            return collectionToUse.CreateEntity();
+            return EntityCollection.CreateEntity();
         }
         
         [Inject]
@@ -101,23 +85,22 @@ namespace EcsR3.UnityEditor.MonoBehaviours
         {
             if (!gameObject.activeInHierarchy || !gameObject.activeSelf) { return; }
 
-            var collectionToUse = GetCollectionManager();
-            var createdEntity = CreateEntity(collectionToUse);
+            var createdEntity = CreateEntity();
             
             DeserializeState();
             createdEntity.AddComponents(EntityData.Components.ToArray());
             
             createdEntity.AddComponents(new ViewComponent { View = gameObject });
-            SetupEntityBinding(createdEntity, collectionToUse);
+            SetupEntityBinding(createdEntity);
 
             Destroy(this);
         }
 
-        private void SetupEntityBinding(IEntity entity, IEntityCollection entityCollection)
+        private void SetupEntityBinding(IEntity entity)
         {
             var entityBinding = gameObject.AddComponent<EntityView>();
             entityBinding.Entity = entity;
-            entityBinding.EntityCollection = entityCollection;
+            entityBinding.EntityCollection = EntityCollection;
         }
     }
 }

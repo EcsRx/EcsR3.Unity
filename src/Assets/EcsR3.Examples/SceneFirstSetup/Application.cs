@@ -9,13 +9,11 @@ namespace EcsR3.Examples.SceneFirstSetup
     {
         protected override void ApplicationStarted()
         {
-            var defaultPool = EntityDatabase.GetCollection();
-
-            var cubeEntity = defaultPool.CreateEntity();
+            var cubeEntity = EntityCollection.CreateEntity();
             cubeEntity.AddComponent<ViewComponent>();
             cubeEntity.AddComponent<CubeComponent>();
 
-            var sphereEntity = defaultPool.CreateEntity();
+            var sphereEntity = EntityCollection.CreateEntity();
             sphereEntity.AddComponent<ViewComponent>();
             sphereEntity.AddComponent<SphereComponent>();
         }

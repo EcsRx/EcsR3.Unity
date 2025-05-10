@@ -9,13 +9,11 @@ namespace EcsR3.Examples.GameObjectBinding
     {
         protected override void ApplicationStarted()
         {
-            var entityCollection = EntityDatabase.GetCollection();
-
-            var cubeEntity = entityCollection.CreateEntity();
+            var cubeEntity = EntityCollection.CreateEntity();
             cubeEntity.AddComponent<ViewComponent>();
             cubeEntity.AddComponent<CubeComponent>();
 
-            var sphereEntity = entityCollection.CreateEntity();
+            var sphereEntity = EntityCollection.CreateEntity();
             sphereEntity.AddComponent<ViewComponent>();
             sphereEntity.AddComponent<SphereComponent>();
         }

@@ -17,16 +17,14 @@ namespace EcsR3.Examples.RandomReactions
         
         protected override void ApplicationStarted()
         {
-            var collection = EntityDatabase.GetCollection();
-
             for (var i = 0; i < _cubeCount; i++)
             {
-                var viewEntity = collection.CreateEntity();
+                var viewEntity = EntityCollection.CreateEntity();
                 viewEntity.AddComponents(new ViewComponent(), new RandomColorComponent());
             }
 
             var group = ObservableGroupManager.GetObservableGroup(new Group(typeof(ViewComponent), typeof(RandomColorComponent)));
-            Debug.Log($"There are {group.Count} entities out of {collection.Count} matching");
+            Debug.Log($"There are {group.Count} entities out of {EntityCollection.Count} matching");
         }
     }
 }
