@@ -554,7 +554,7 @@
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\Microsoft.Bcl.TimeProvider.8.0.0\lib\net462\Microsoft.Bcl.TimeProvider.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3.Plugins.Transforms">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Plugins.Transforms.9.0.50\lib\netstandard2.1\SystemsR3.Plugins.Transforms.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Plugins.Transforms.9.0.52\lib\netstandard2.1\SystemsR3.Plugins.Transforms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -563,16 +563,16 @@
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\R3.1.3.0\lib\netstandard2.1\R3.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Plugins.Views">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Views.9.0.50\lib\netstandard2.1\EcsR3.Plugins.Views.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Views.9.0.52\lib\netstandard2.1\EcsR3.Plugins.Views.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3.Infrastructure">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Infrastructure.9.0.50\lib\netstandard2.1\SystemsR3.Infrastructure.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Infrastructure.9.0.52\lib\netstandard2.1\SystemsR3.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Infrastructure">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Infrastructure.9.0.50\lib\netstandard2.1\EcsR3.Infrastructure.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Infrastructure.9.0.52\lib\netstandard2.1\EcsR3.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Plugins.Transforms">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Transforms.9.0.50\lib\netstandard2.1\EcsR3.Plugins.Transforms.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Transforms.9.0.52\lib\netstandard2.1\EcsR3.Plugins.Transforms.dll</HintPath>
     </Reference>
     <Reference Include="NuGetForUnity.PluginAPI">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\NuGet\Editor\NuGetForUnity.PluginAPI.dll</HintPath>
@@ -584,16 +584,16 @@
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.9.0.50\lib\netstandard2.1\SystemsR3.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.9.0.52\lib\netstandard2.1\SystemsR3.dll</HintPath>
     </Reference>
     <Reference Include="NugetForUnity">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\NuGet\Editor\NugetForUnity.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.9.0.50\lib\netstandard2.1\EcsR3.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.9.0.52\lib\netstandard2.1\EcsR3.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Plugins.Batching">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Batching.9.0.50\lib\netstandard2.1\EcsR3.Plugins.Batching.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Batching.9.0.52\lib\netstandard2.1\EcsR3.Plugins.Batching.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.39f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -970,11 +970,11 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.39f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
