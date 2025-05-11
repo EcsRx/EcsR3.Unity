@@ -51,6 +51,8 @@
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Reactive\ReactiveVector3EditorInput.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Unity\ColorEditorInput.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Unity\GameObjectEditorInput.cs" />
+    <Compile Include="Assets\EcsR3\UnityEditor\Editor\UIAspects\GroupUIAspect.cs" />
+    <Compile Include="Assets\EcsR3\UnityEditor\Editor\UIAspects\SystemUIAspect.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Unity\RectEditorInput.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Reactive\ReactiveRectEditorInput.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Basic\EnumEditorInput.cs" />

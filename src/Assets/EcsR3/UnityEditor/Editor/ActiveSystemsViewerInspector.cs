@@ -1,8 +1,8 @@
 ﻿using EcsR3.Systems;
 using EcsR3.UnityEditor.Editor.Extensions;
 using EcsR3.UnityEditor.Editor.Helpers;
+using EcsR3.UnityEditor.Editor.UIAspects;
 using EcsR3.UnityEditor.MonoBehaviours;
-using SystemsR3.Extensions;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,8 +27,6 @@ namespace EcsR3.UnityEditor.Editor
             
             var requiredComponentStyle = new GUIStyle() { };
             requiredComponentStyle.normal.textColor = Color.green.Desaturate(0.5f);
-            var excludedComponentStyle = new GUIStyle() { };
-            excludedComponentStyle.normal.textColor = Color.red.Desaturate(0.5f);
             
             EditorGUIHelper.WithLabel("Running Systems");
             EditorGUILayout.Space();
@@ -54,67 +52,19 @@ namespace EcsR3.UnityEditor.Editor
                         }
                     });
 
-                    EditorGUIHelper.WithHorizontalBoxLayout(() =>
-                    {
-                        var iconStyle = new GUIStyle { fontSize = 12, stretchWidth = true };
-                        iconStyle.normal.textColor = Color.white;
-                        EditorGUI.indentLevel++;
-                        systemVisibleState.ShowImplementations =
-                            EditorGUILayout.Foldout(systemVisibleState.ShowImplementations, "System Types", true);
-                        EditorGUI.indentLevel--;
-                    });
-
+                    systemVisibleState.ShowImplementations = EditorGUIHelper.WithAccordion(systemVisibleState.ShowImplementations, "System Types");
+                    
                     if (systemVisibleState.ShowImplementations)
-                    {
-                        EditorGUI.indentLevel++;
-                        EditorGUIHelper.WithVerticalBoxLayout(() =>
-                        {
-                            var interfacesImplemented = system.GetSystemTypesImplemented();
-                            foreach (var interfaceImplemented in interfacesImplemented)
-                            { EditorGUILayout.LabelField(interfaceImplemented.GetFriendlyName(), requiredComponentStyle); }
-                        });
-                        EditorGUI.indentLevel--;
-                    }
+                    { SystemUIAspect.DrawSystemTypesUI(system); }
 
                     if (system is not IGroupSystem groupSystem) { return; }
                     
-                    EditorGUIHelper.WithHorizontalBoxLayout(() =>
-                    {
-                        var iconStyle = new GUIStyle { fontSize = 12, stretchWidth = true };
-                        iconStyle.normal.textColor = Color.white;
-                        EditorGUI.indentLevel++;
-                        systemVisibleState.ShowGroup =
-                            EditorGUILayout.Foldout(systemVisibleState.ShowGroup, "Group", true);
-                        EditorGUI.indentLevel--;
-                    });
+                    systemVisibleState.ShowGroup = EditorGUIHelper.WithAccordion(systemVisibleState.ShowGroup, "Group");
 
-                    if (systemVisibleState.ShowGroup)
-                    {
-                        EditorGUIHelper.WithVerticalBoxLayout(() =>
-                        {
-                            EditorGUI.indentLevel++;
-                            foreach (var componentType in groupSystem.Group.RequiredComponents)
-                            {
-                                EditorGUILayout.LabelField(componentType.Name, requiredComponentStyle);
-                            }
-                            EditorGUI.indentLevel--;
-                        });
-
-                        if (groupSystem.Group.ExcludedComponents.Length > 0)
-                        {
-                            EditorGUIHelper.WithVerticalBoxLayout(() =>
-                            {
-                                EditorGUI.indentLevel++;
-                                foreach (var componentType in groupSystem.Group.ExcludedComponents)
-                                {
-                                    EditorGUILayout.LabelField(componentType.Name, excludedComponentStyle);
-                                }
-                                EditorGUI.indentLevel--;
-                            });
-                        }
-                    }
-                    
+                    if (!systemVisibleState.ShowGroup) { return; }
+                    GroupUIAspect.DrawGroupUI(groupSystem.Group);
                 });
+                EditorGUILayout.Space();
             }
         }
     }

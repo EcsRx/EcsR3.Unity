@@ -84,18 +84,7 @@ namespace EcsR3.UnityEditor.Editor.Extensions
             EditorGUILayout.EndHorizontal();
             return result;
         }
-
-        public static bool WithAccordion(this global::UnityEditor.Editor editor, bool expanded, string label)
-        {
-            EditorGUIHelper.WithHorizontalBoxLayout(() =>
-            {
-                var iconStyle = new GUIStyle { fontSize = 12 };
-                iconStyle.normal.textColor = Color.white;
-                expanded = EditorGUILayout.Foldout(expanded, label, true);
-            });
-            return expanded;
-        }
-
+        
         public static void SaveActiveSceneChanges(this global::UnityEditor.Editor editor)
         {
             var activeScene = SceneManager.GetActiveScene();
