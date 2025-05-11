@@ -17,7 +17,7 @@ namespace EcsR3.UnityEditor.Editor
             if(activeSystemsViewer == null) {  return; }
             var executor = activeSystemsViewer.SystemExecutor;
             var observableGroupManager = activeSystemsViewer.ObservableGroupManager;
-            var systemVisibleStates = activeSystemsViewer.SystemVisibleStates;
+            var visibleStates = activeSystemsViewer.VisibleStates;
 
             if (executor == null)
             {
@@ -34,10 +34,10 @@ namespace EcsR3.UnityEditor.Editor
             EditorGUILayout.Space();
             foreach (var system in executor.Systems)
             {
-                if (!systemVisibleStates.ContainsKey(system))
-                { systemVisibleStates.Add(system, new ActiveSystemsViewer.VisibilityState()); }
+                if (!visibleStates.ContainsKey(system))
+                { visibleStates.Add(system, new ActiveSystemsViewer.VisibilityState()); }
                 
-                var systemVisibleState = systemVisibleStates[system];
+                var systemVisibleState = visibleStates[system];
                 var systemType = system.GetType();
                 var groupedSystem = system as IGroupSystem;
                 EditorGUIHelper.WithVerticalBoxLayout(() =>
@@ -71,9 +71,7 @@ namespace EcsR3.UnityEditor.Editor
                         {
                             var interfacesImplemented = system.GetSystemTypesImplemented();
                             foreach (var interfaceImplemented in interfacesImplemented)
-                            {
-                                EditorGUILayout.LabelField(interfaceImplemented.Name, requiredComponentStyle);
-                            }
+                            { EditorGUILayout.LabelField(interfaceImplemented.GetFriendlyName(), requiredComponentStyle); }
                         });
                         EditorGUI.indentLevel--;
                     }
@@ -85,12 +83,12 @@ namespace EcsR3.UnityEditor.Editor
                         var iconStyle = new GUIStyle { fontSize = 12, stretchWidth = true };
                         iconStyle.normal.textColor = Color.white;
                         EditorGUI.indentLevel++;
-                        systemVisibleState.ShowComponents =
-                            EditorGUILayout.Foldout(systemVisibleState.ShowComponents, "Group", true);
+                        systemVisibleState.ShowGroup =
+                            EditorGUILayout.Foldout(systemVisibleState.ShowGroup, "Group", true);
                         EditorGUI.indentLevel--;
                     });
 
-                    if (systemVisibleState.ShowComponents)
+                    if (systemVisibleState.ShowGroup)
                     {
                         EditorGUIHelper.WithVerticalBoxLayout(() =>
                         {

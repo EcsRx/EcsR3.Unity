@@ -7,9 +7,17 @@ using EcsR3.Groups;
 using EcsR3.Plugins.Views.Components;
 using EcsR3.Systems;
 using R3;
+using SystemsR3.Systems.Conventional;
 
 namespace EcsR3.Examples.PooledViews.Systems
 {
+    public class TEST : IReactToEventSystem<object>
+    {
+        public void Process(object eventData)
+        {
+        }
+    }
+    
     public class SelfDestructionSystem : IReactToEntitySystem
     {
         public IGroup Group => new Group(typeof(SelfDestructComponent), typeof(ViewComponent));

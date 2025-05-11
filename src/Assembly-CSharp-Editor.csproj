@@ -88,6 +88,7 @@
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\UIAspects\ComponentUIAspect.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Reactive\ReactivePropertyQuaternionEditorInput.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\UIStateChange.cs" />
+    <Compile Include="Assets\EcsR3\UnityEditor\Editor\Extensions\TypeExtensions.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Reactive\ReactiveFloatEditorInput.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EntityViewInspector.cs" />
     <None Include="Assets\NuGet\Editor\NuGetForUnity.PluginAPI.xml" />
