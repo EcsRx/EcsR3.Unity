@@ -91,8 +91,6 @@ namespace EcsR3.UnityEditor.Editor.Helpers
             var result = false;
             WithHorizontalBoxLayout(() =>
             {
-                var iconStyle = new GUIStyle { fontSize = 12, stretchWidth = true };
-                iconStyle.normal.textColor = Color.white;
                 EditorGUI.indentLevel++;
                 result = EditorGUILayout.Foldout(expanded, label, true);
                 EditorGUI.indentLevel--;
