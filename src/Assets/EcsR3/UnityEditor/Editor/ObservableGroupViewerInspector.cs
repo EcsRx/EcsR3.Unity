@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EcsR3.Extensions;
 using EcsR3.Groups;
+using EcsR3.Systems;
 using EcsR3.UnityEditor.Editor.Extensions;
 using EcsR3.UnityEditor.Editor.Helpers;
 using EcsR3.UnityEditor.Editor.UIAspects;
@@ -16,6 +18,7 @@ namespace EcsR3.UnityEditor.Editor
         public class VisibilityState
         {
             public bool ShowGroup { get; set; }
+            public bool ShowSystems { get; set; }
         }
         public Dictionary<LookupGroup, VisibilityState> VisibleStates = new();
         
@@ -25,6 +28,7 @@ namespace EcsR3.UnityEditor.Editor
             if(observableGroupViewer == null) {  return; }
             var observableGroupManager = observableGroupViewer.ObservableGroupManager;
             var componentTypeLookup = observableGroupViewer.ComponentTypeLookup;
+            var systemExecutor = observableGroupViewer.SystemExecutor;
 
             if (observableGroupManager == null)
             {
@@ -52,9 +56,26 @@ namespace EcsR3.UnityEditor.Editor
 
                     visibleState.ShowGroup = EditorGUIHelper.WithAccordion(visibleState.ShowGroup, "Group");
 
-                    if (!visibleState.ShowGroup) { return; }
+                    if (visibleState.ShowGroup)
+                    { GroupUIAspect.DrawGroupUI(componentTypeLookup, observableGroup.Group); }
+
+                    var systemsUsingGroup = systemExecutor.Systems
+                        .Where(x => x is IGroupSystem groupSystem &&
+                                    componentTypeLookup.GetLookupGroupFor(groupSystem.Group) == observableGroup.Group)
+                        .ToArray();
                     
-                    GroupUIAspect.DrawGroupUI(componentTypeLookup, observableGroup.Group);
+                    visibleState.ShowSystems = EditorGUIHelper.WithAccordion(visibleState.ShowSystems, $"Related Systems [{systemsUsingGroup.Length}]");
+                    if (visibleState.ShowSystems)
+                    {
+                        EditorGUIHelper.WithVerticalBoxLayout(() =>
+                        {
+                            EditorGUI.indentLevel++;
+                            foreach (var system in systemsUsingGroup)
+                            { EditorGUILayout.LabelField(system.GetType().Name, SystemUIAspect.SystemTypeStyle); }
+                            EditorGUI.indentLevel--;
+                        });
+                    }
+                    
                     EditorGUILayout.Space();
                 });
             }
