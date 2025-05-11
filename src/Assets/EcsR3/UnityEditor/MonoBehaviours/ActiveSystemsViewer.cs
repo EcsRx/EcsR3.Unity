@@ -9,12 +9,18 @@ namespace EcsR3.UnityEditor.MonoBehaviours
 {
     public class ActiveSystemsViewer : MonoBehaviour
     {
+        public class VisibilityState
+        {
+            public bool ShowImplementations { get; set; } 
+            public bool ShowComponents { get; set; }
+        }
+        
         [Inject]
         public ISystemExecutor SystemExecutor { get; private set; }
         
         [Inject]
         public IObservableGroupManager ObservableGroupManager { get; private set; }
         
-        public Dictionary<ISystem, (bool ShowImplementations, bool ShowComponents)> SystemVisibleStates = new();
+        public Dictionary<ISystem, VisibilityState> SystemVisibleStates = new();
     }
 }

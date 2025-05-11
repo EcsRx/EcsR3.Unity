@@ -35,7 +35,7 @@ namespace EcsR3.UnityEditor.Editor
             foreach (var system in executor.Systems)
             {
                 if (!systemVisibleStates.ContainsKey(system))
-                { systemVisibleStates.Add(system, (false, false)); }
+                { systemVisibleStates.Add(system, new ActiveSystemsViewer.VisibilityState()); }
                 
                 var systemVisibleState = systemVisibleStates[system];
                 var systemType = system.GetType();
@@ -56,16 +56,17 @@ namespace EcsR3.UnityEditor.Editor
 
                     EditorGUIHelper.WithHorizontalBoxLayout(() =>
                     {
-                        var iconStyle = new GUIStyle { fontSize = 12 };
+                        var iconStyle = new GUIStyle { fontSize = 12, stretchWidth = true };
                         iconStyle.normal.textColor = Color.white;
                         EditorGUI.indentLevel++;
                         systemVisibleState.ShowImplementations =
-                            EditorGUILayout.Foldout(systemVisibleState.ShowImplementations, "Implementations", true);
+                            EditorGUILayout.Foldout(systemVisibleState.ShowImplementations, "System Types", true);
                         EditorGUI.indentLevel--;
                     });
 
                     if (systemVisibleState.ShowImplementations)
                     {
+                        EditorGUI.indentLevel++;
                         EditorGUIHelper.WithVerticalBoxLayout(() =>
                         {
                             var interfacesImplemented = system.GetSystemTypesImplemented();
@@ -74,33 +75,47 @@ namespace EcsR3.UnityEditor.Editor
                                 EditorGUILayout.LabelField(interfaceImplemented.Name, requiredComponentStyle);
                             }
                         });
+                        EditorGUI.indentLevel--;
                     }
-                    /*
-                    
-                    
-                    if (system is IGroupSystem groupSystem)
-                    {
-                        EditorGUILayout.LabelField("System Components");
 
+                    if (system is not IGroupSystem groupSystem) { return; }
+                    
+                    EditorGUIHelper.WithHorizontalBoxLayout(() =>
+                    {
+                        var iconStyle = new GUIStyle { fontSize = 12, stretchWidth = true };
+                        iconStyle.normal.textColor = Color.white;
+                        EditorGUI.indentLevel++;
+                        systemVisibleState.ShowComponents =
+                            EditorGUILayout.Foldout(systemVisibleState.ShowComponents, "Group", true);
+                        EditorGUI.indentLevel--;
+                    });
+
+                    if (systemVisibleState.ShowComponents)
+                    {
                         EditorGUIHelper.WithVerticalBoxLayout(() =>
                         {
+                            EditorGUI.indentLevel++;
                             foreach (var componentType in groupSystem.Group.RequiredComponents)
                             {
                                 EditorGUILayout.LabelField(componentType.Name, requiredComponentStyle);
                             }
+                            EditorGUI.indentLevel--;
                         });
 
                         if (groupSystem.Group.ExcludedComponents.Length > 0)
                         {
                             EditorGUIHelper.WithVerticalBoxLayout(() =>
                             {
+                                EditorGUI.indentLevel++;
                                 foreach (var componentType in groupSystem.Group.ExcludedComponents)
                                 {
                                     EditorGUILayout.LabelField(componentType.Name, excludedComponentStyle);
                                 }
+                                EditorGUI.indentLevel--;
                             });
                         }
-                    }*/
+                    }
+                    
                 });
             }
         }
