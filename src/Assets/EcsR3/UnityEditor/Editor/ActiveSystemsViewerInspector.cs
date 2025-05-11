@@ -1,8 +1,10 @@
-﻿using EcsR3.Systems;
+﻿using System.Collections.Generic;
+using EcsR3.Systems;
 using EcsR3.UnityEditor.Editor.Extensions;
 using EcsR3.UnityEditor.Editor.Helpers;
 using EcsR3.UnityEditor.Editor.UIAspects;
 using EcsR3.UnityEditor.MonoBehaviours;
+using SystemsR3.Systems;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,13 +13,20 @@ namespace EcsR3.UnityEditor.Editor
     [CustomEditor(typeof(ActiveSystemsViewer))]
     public class ActiveSystemsViewerInspector : global::UnityEditor.Editor
     {
+        public class VisibilityState
+        {
+            public bool ShowImplementations { get; set; } 
+            public bool ShowGroup { get; set; }
+        }
+        
+        public Dictionary<ISystem, VisibilityState> VisibleStates = new();
+        
         public override void OnInspectorGUI()
         {
             var activeSystemsViewer = (ActiveSystemsViewer)target;
             if(activeSystemsViewer == null) {  return; }
             var executor = activeSystemsViewer.SystemExecutor;
             var observableGroupManager = activeSystemsViewer.ObservableGroupManager;
-            var visibleStates = activeSystemsViewer.VisibleStates;
 
             if (executor == null)
             {
@@ -32,10 +41,10 @@ namespace EcsR3.UnityEditor.Editor
             EditorGUILayout.Space();
             foreach (var system in executor.Systems)
             {
-                if (!visibleStates.ContainsKey(system))
-                { visibleStates.Add(system, new ActiveSystemsViewer.VisibilityState()); }
+                if (!VisibleStates.ContainsKey(system))
+                { VisibleStates.Add(system, new VisibilityState()); }
                 
-                var systemVisibleState = visibleStates[system];
+                var systemVisibleState = VisibleStates[system];
                 var systemType = system.GetType();
                 var groupedSystem = system as IGroupSystem;
                 EditorGUIHelper.WithVerticalBoxLayout(() =>
