@@ -2,6 +2,7 @@
 using System.Linq;
 using EcsR3.Collections;
 using EcsR3.Collections.Entity;
+using EcsR3.Components.Database;
 using EcsR3.Infrastructure;
 using EcsR3.Infrastructure.Modules;
 using EcsR3.Plugins.Batching;
@@ -28,6 +29,7 @@ namespace EcsR3.Unity
         public ISystemExecutor SystemExecutor { get; private set; }
         public IEventSystem EventSystem { get; private set; }
         public IEntityCollection EntityCollection { get; private set; }
+        public IComponentDatabase ComponentDatabase { get; private set; }
         public IObservableGroupManager ObservableGroupManager { get; private set; }
         public IEnumerable<ISystemsR3Plugin> Plugins => _plugins;
         
@@ -72,7 +74,8 @@ namespace EcsR3.Unity
         protected virtual void LoadModules()
         {
             DependencyRegistry.LoadModule<FrameworkModule>();
-            DependencyRegistry.LoadModule<EcsR3InfrastructureModule>();
+            DependencyRegistry.LoadModule( new EcsR3InfrastructureModule()
+                { ComponentDatabaseConfig = OverrideComponentDatabaseConfig() });
             DependencyRegistry.LoadModule<UnityOverrideModule>();
         }
         
@@ -85,8 +88,16 @@ namespace EcsR3.Unity
             SystemExecutor = DependencyResolver.Resolve<ISystemExecutor>();
             EventSystem = DependencyResolver.Resolve<IEventSystem>();
             EntityCollection = DependencyResolver.Resolve<IEntityCollection>();
+            ComponentDatabase = DependencyResolver.Resolve<IComponentDatabase>();
             ObservableGroupManager = DependencyResolver.Resolve<IObservableGroupManager>();
         }
+        
+        /// <summary>
+        /// Allows you to override the default component pool database settings, which can hugely reduce allocations
+        /// and startup speed, it is entirely optional and defaults are used if nothing is overidden.
+        /// </summary>
+        /// <returns>A component database configuration to use</returns>
+        public virtual ComponentDatabaseConfig OverrideComponentDatabaseConfig() => new ComponentDatabaseConfig() {};
         
         /// <summary>
         /// Bind any systems that the application will need

@@ -15,7 +15,8 @@ namespace EcsR3.Examples.RandomReactions.ViewResolvers
         private int _currentOnRow = 0;
 
         protected override GameObject PrefabTemplate { get; } = Resources.Load<GameObject>("colored-cube");
-
+        private Transform Parent { get; } = GameObject.Find("Entities").transform;
+        
         public CubeViewResolver(IEntityCollection entityCollection, IEventSystem eventSystem, IUnityInstantiator instantiator)
             : base(entityCollection, eventSystem, instantiator)
         {}
@@ -38,6 +39,7 @@ namespace EcsR3.Examples.RandomReactions.ViewResolvers
         protected override void OnViewCreated(IEntity entity, GameObject view)
         {
             view.transform.position = _nextPosition;
+            view.transform.SetParent(Parent);
             IncrementRow();
         }
     }

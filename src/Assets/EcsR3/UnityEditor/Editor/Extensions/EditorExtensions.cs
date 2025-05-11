@@ -1,4 +1,5 @@
 ﻿using System;
+using EcsR3.UnityEditor.Editor.Helpers;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -83,7 +84,7 @@ namespace EcsR3.UnityEditor.Editor.Extensions
             EditorGUILayout.EndHorizontal();
             return result;
         }
-
+        
         public static void SaveActiveSceneChanges(this global::UnityEditor.Editor editor)
         {
             var activeScene = SceneManager.GetActiveScene();

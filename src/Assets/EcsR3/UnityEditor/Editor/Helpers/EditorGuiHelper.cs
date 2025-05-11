@@ -85,6 +85,18 @@ namespace EcsR3.UnityEditor.Editor.Helpers
             EditorGUILayout.EndHorizontal();
             return result;
         }
+        
+        public static bool WithAccordion(bool expanded, string label)
+        {
+            var result = false;
+            WithHorizontalBoxLayout(() =>
+            {
+                EditorGUI.indentLevel++;
+                result = EditorGUILayout.Foldout(expanded, label, true);
+                EditorGUI.indentLevel--;
+            });
+            return result;
+        }
 
         public static bool HasBeenClicked(this ComponentEditorState editorState)
         {

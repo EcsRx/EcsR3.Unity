@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using EcsR3.UnityEditor.Editor.Extensions;
-using EcsR3.UnityEditor.Editor.Helpers;
+﻿using EcsR3.UnityEditor.Editor.Helpers;
 using EcsR3.UnityEditor.MonoBehaviours;
 using UnityEditor;
-using UnityEngine;
 
 namespace EcsR3.UnityEditor.Editor
 {
