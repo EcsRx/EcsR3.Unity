@@ -64,7 +64,7 @@ namespace EcsR3.UnityEditor.Editor
                                     componentTypeLookup.GetLookupGroupFor(groupSystem.Group) == observableGroup.Group)
                         .ToArray();
                     
-                    visibleState.ShowSystems = EditorGUIHelper.WithAccordion(visibleState.ShowSystems, $"Related Systems [{systemsUsingGroup.Length}]");
+                    visibleState.ShowSystems = EditorGUIHelper.WithAccordion(visibleState.ShowSystems, $"{systemsUsingGroup.Length} Related Systems");
                     if (visibleState.ShowSystems)
                     {
                         EditorGUIHelper.WithVerticalBoxLayout(() =>

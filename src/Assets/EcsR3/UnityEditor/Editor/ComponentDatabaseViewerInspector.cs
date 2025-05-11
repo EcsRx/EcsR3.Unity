@@ -53,7 +53,7 @@ namespace EcsR3.UnityEditor.Editor
                     EditorGUIHelper.WithHorizontalBoxLayout(() =>
                     {
                         EditorGUILayout.LabelField($"{componentPoolStats.componentName}");
-                        EditorGUILayout.LabelField($"{componentPoolStats.currentCount}/{componentPoolStats.currentMax}");
+                        EditorGUILayout.LabelField($"{componentPoolStats.currentCount}/{componentPoolStats.currentMax} Allocated");
                     });
                 });
             }
@@ -61,18 +61,23 @@ namespace EcsR3.UnityEditor.Editor
             EditorGUIHelper.WithVerticalBoxLayout(() =>
             {
                 GUI.backgroundColor = string.Empty.GetHashCode().ToMutedColor();
-                ShowUnallocatedPools = EditorGUIHelper.WithAccordion(ShowUnallocatedPools, "Unallocated Pools");
-
+                var nonPreAllocated = allComponentPoolStats
+                    .Where(x => x.currentMax == 0)
+                    .ToArray();
+                
+                ShowUnallocatedPools = EditorGUIHelper.WithAccordion(ShowUnallocatedPools, $"{nonPreAllocated.Length} Unallocated Pools");
                 if (!ShowUnallocatedPools) { return; }
 
                 EditorGUIHelper.WithVerticalBoxLayout(() =>
                 {
                     EditorGUI.indentLevel++;
-                    var nonPreAllocated = allComponentPoolStats.Where(x => x.currentMax == 0);
-                    foreach (var componentPoolStats in nonPreAllocated)
+                    if (nonPreAllocated.Length > 0)
                     {
-                        EditorGUILayout.LabelField($"{componentPoolStats.componentName}");
+                        foreach (var componentPoolStats in nonPreAllocated)
+                        { EditorGUILayout.LabelField($"{componentPoolStats.componentName}"); }
                     }
+                    else
+                    { EditorGUILayout.LabelField("No Unallocated Pools"); }
                     EditorGUI.indentLevel--;
                 });
             });
