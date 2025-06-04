@@ -8,8 +8,8 @@ namespace EcsR3.Examples.CustomGameObjectHandling
     {
         protected override void ApplicationStarted()
         {
-            var viewEntity = EntityCollection.CreateEntity();
-            viewEntity.AddComponents(new CustomViewComponent(), new PlayerControlledComponent(), new CameraFollowsComponent());
+            var viewEntity = EntityCollection.Create();
+            EntityComponentAccessor.AddComponents(viewEntity, new CustomViewComponent(), new PlayerControlledComponent(), new CameraFollowsComponent());
         }
     }
 }

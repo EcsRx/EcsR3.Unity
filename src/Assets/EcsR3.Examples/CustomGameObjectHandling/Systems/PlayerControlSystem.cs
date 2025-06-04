@@ -1,4 +1,5 @@
 ﻿using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.CustomGameObjectHandling.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
@@ -17,7 +18,7 @@ namespace EcsR3.Examples.CustomGameObjectHandling.Systems
             .WithComponent<PlayerControlledComponent>()
             .Build();
 
-        public void Process(IEntity entity, ElapsedTime elapsedTime)
+        public void Process(IEntityComponentAccessor entityComponentAccessor, Entity entity, ElapsedTime elapsedTime)
         {
             var strafeMovement = 0f;
             var forardMovement = 0f;
@@ -27,7 +28,7 @@ namespace EcsR3.Examples.CustomGameObjectHandling.Systems
             if (Input.GetKey(KeyCode.W)) { forardMovement = 1.0f; }
             if (Input.GetKey(KeyCode.S)) { forardMovement = -1.0f; }
 
-            var viewComponent = entity.GetComponent<CustomViewComponent>();
+            var viewComponent = entityComponentAccessor.GetComponent<CustomViewComponent>(entity);
             var transform = viewComponent.CustomView.transform;
             var newPosition = transform.position;
 

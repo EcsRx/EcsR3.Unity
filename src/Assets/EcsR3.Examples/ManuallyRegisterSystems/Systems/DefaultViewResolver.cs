@@ -1,6 +1,7 @@
-﻿using SystemsR3.Events;
-using EcsR3.Collections.Entity;
+﻿using EcsR3.Collections.Entities;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
+using SystemsR3.Events;
 using EcsR3.Unity.Dependencies;
 using EcsR3.Unity.Systems;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace EcsR3.Examples.ManuallyRegisterSystems.Systems
             : base(entityCollection, eventSystem, instantiator)
         {}
 
-        protected override void OnViewCreated(IEntity entity, GameObject view)
+        protected override void OnViewCreated(IEntityComponentAccessor entityComponentAccessor, Entity entity, GameObject view)
         {
             view.name = $"entity-{entity.Id}";
         }

@@ -1,6 +1,7 @@
-﻿using SystemsR3.Events;
-using EcsR3.Collections.Entity;
+﻿using EcsR3.Collections.Entities;
+using SystemsR3.Events;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.SceneFirstSetup.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
@@ -22,7 +23,7 @@ namespace EcsR3.Examples.SceneFirstSetup.ViewResolvers
 
         protected override GameObject PrefabTemplate { get; } = Resources.Load<GameObject>("Sphere");
 
-        protected override void OnViewCreated(IEntity entity, GameObject view)
+        protected override void OnViewCreated(IEntityComponentAccessor entityComponentAccessor, Entity entity, GameObject view)
         {
             view.transform.position = new Vector3(2, 0, 0);
             view.transform.parent = ParentTrasform;

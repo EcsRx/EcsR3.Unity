@@ -1,6 +1,7 @@
-﻿using EcsR3.Collections.Entity;
-using SystemsR3.Events;
+﻿using EcsR3.Collections.Entities;
 using EcsR3.Entities;
+using SystemsR3.Events;
+using EcsR3.Entities.Accessors;
 using EcsR3.Extensions;
 using EcsR3.Unity.Dependencies;
 using EcsR3.Unity.Handlers;
@@ -30,32 +31,31 @@ namespace EcsR3.Unity.Systems
         public override IViewHandler CreateViewHandler()
         { return new PrefabViewHandler(Instantiator, PrefabTemplate); }
 
-        protected override void OnViewCreated(IEntity entity, ViewComponent viewComponent)
+        protected override void OnViewCreated(IEntityComponentAccessor accessor, Entity entity, ViewComponent viewComponent)
         {
             var gameObject = viewComponent.View as GameObject;
-            OnViewCreated(entity, gameObject);
+            OnViewCreated(accessor, entity, gameObject);
         }
 
-        protected abstract void OnViewCreated(IEntity entity, GameObject view);
+        protected abstract void OnViewCreated(IEntityComponentAccessor accessor, Entity entity, GameObject view);
 
-        public override void Setup(IEntity entity)
+        public override void Setup(IEntityComponentAccessor accessor, Entity entity)
         {
-            base.Setup(entity);
+            base.Setup(accessor, entity);
 
-            var viewComponent = entity.GetComponent<ViewComponent>();
+            var viewComponent = accessor.GetComponent<ViewComponent>(entity);
             var gameObject = viewComponent.View as GameObject;
             var entityBinding = gameObject.GetComponent<EntityView>();
             if (entityBinding == null)
             {
                 entityBinding = gameObject.AddComponent<EntityView>();
                 entityBinding.Entity = entity;
-                entityBinding.EntityCollection = EntityCollection;
             }
 
             if (viewComponent.DestroyWithView)
             {
                 gameObject.OnDestroyAsObservable()
-                    .Subscribe(x => entityBinding.EntityCollection.RemoveEntity(entity.Id))
+                    .Subscribe(x => EntityCollection.Remove(entity))
                     .AddTo(gameObject);
             }
         }

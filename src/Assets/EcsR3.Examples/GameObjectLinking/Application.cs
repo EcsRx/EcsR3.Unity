@@ -1,8 +1,5 @@
-﻿using EcsR3.Infrastructure.Extensions;
-using EcsR3.Unity;
-using EcsR3.Unity.Extensions;
+﻿using EcsR3.Unity.Extensions;
 using EcsR3.Zenject;
-using EcsR3.Zenject.Extensions;
 using UnityEngine;
 
 namespace EcsR3.Examples.GameObjectLinking
@@ -11,10 +8,10 @@ namespace EcsR3.Examples.GameObjectLinking
     {
         protected override void ApplicationStarted()
         {
-            var entity = EntityCollection.CreateEntity();
+            var entity = EntityCollection.Create();
 
             var existingGameObject = GameObject.Find("ExistingGameObject");
-            existingGameObject.LinkEntity(entity, EntityCollection);
+            existingGameObject.LinkEntity(entity, EntityComponentAccessor);
         }
     }
 }

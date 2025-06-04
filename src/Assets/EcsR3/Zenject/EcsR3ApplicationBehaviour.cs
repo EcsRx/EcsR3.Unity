@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EcsR3.Unity;
 using EcsR3.Zenject.Dependencies;
 using UnityEngine;
@@ -10,17 +9,36 @@ namespace EcsR3.Zenject
     [DefaultExecutionOrder(-20000)]
     public abstract class EcsR3ApplicationBehaviour : UnityEcsR3ApplicationBehaviour
     {
-        private SceneContext _sceneContext;
+        private Context _locatedContext;
         
         private void Awake()
         {
-            var sceneContexts = FindObjectsByType<SceneContext>(FindObjectsSortMode.None);
-            _sceneContext = sceneContexts.FirstOrDefault();
+            var goContext = GetComponent<GameObjectContext>();
+            if (goContext)
+            {
+                goContext.PostInstall += OnZenjectReady;
+                _locatedContext = goContext;
+                return;
+            }
             
-            if(_sceneContext == null) 
-            { throw new Exception("Cannot find SceneContext, please make sure one is on the scene"); }
+            var sceneContext = GetComponent<SceneContext>();
+            if (sceneContext)
+            {
+                sceneContext.PostInstall += OnZenjectReady;
+                _locatedContext = sceneContext;
+                return;
+            }
+
+            var projectContext = ProjectContext.TryGetPrefab();
+            if (projectContext)
+            {
+                _locatedContext = ProjectContext.Instance;
+                ProjectContext.Instance.EnsureIsInitialized();
+                OnZenjectReady();
+                return;
+            }
             
-            _sceneContext.PostInstall += OnZenjectReady;
+            throw new Exception("Cannot find Project, Scene or GameObject Context, please make sure one is on the application object");
         }
 
         /// <summary>
@@ -28,7 +46,7 @@ namespace EcsR3.Zenject
         /// </summary>
         protected void OnZenjectReady()
         {   
-            DependencyRegistry = new ZenjectDependencyRegistry(_sceneContext.Container);
+            DependencyRegistry = new ZenjectDependencyRegistry(_locatedContext.Container);
             StartApplication();
         }
 
@@ -44,7 +62,7 @@ namespace EcsR3.Zenject
         protected override void ResolveApplicationDependencies()
         {
             base.ResolveApplicationDependencies();
-            _sceneContext.Container.Inject(this);
+            _locatedContext.Container.Inject(this);
         }
     }
 }

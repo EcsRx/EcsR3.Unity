@@ -1,4 +1,5 @@
 ﻿using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.SimpleMovement.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
@@ -18,7 +19,7 @@ namespace EcsR3.Examples.SimpleMovement.Systems
             .WithComponent<PlayerControlledComponent>()
             .Build();
 
-        public void Process(IEntity entity, ElapsedTime elapsedTime)
+        public void Process(IEntityComponentAccessor entityComponentAccessor, Entity entity, ElapsedTime elapsedTime)
         {
             var strafeMovement = 0f;
             var forardMovement = 0f;
@@ -28,7 +29,7 @@ namespace EcsR3.Examples.SimpleMovement.Systems
             if (Input.GetKey(KeyCode.W)) { forardMovement = 1.0f; }
             if (Input.GetKey(KeyCode.S)) { forardMovement = -1.0f; }
 
-            var viewComponent = entity.GetComponent<ViewComponent>();
+            var viewComponent = entityComponentAccessor.GetComponent<ViewComponent>(entity);
             var view = viewComponent.View as GameObject;
             var transform = view.transform;
 

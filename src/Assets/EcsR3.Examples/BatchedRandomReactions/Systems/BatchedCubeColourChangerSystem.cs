@@ -1,9 +1,9 @@
-using EcsR3.Collections;
 using EcsR3.Components.Database;
-using EcsR3.Components.Lookups;
+using EcsR3.Computeds.Components.Registries;
+using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.BatchedRandomReactions.Components;
-using EcsR3.Plugins.Batching.Factories;
-using EcsR3.Plugins.Batching.Systems;
+using EcsR3.Systems.Batching.Convention;
 using R3;
 using SystemsR3.Attributes;
 using SystemsR3.Threading;
@@ -15,15 +15,15 @@ namespace EcsR3.Examples.BatchedRandomReactions.Systems
     /// This is lower priority so happens after the other systems which have a higher priority
     /// </summary>
     [Priority(PriorityTypes.Lower)]
-    public class BatchedCubeColourChangerSystem : ReferenceBatchedSystem<ViewDataComponent, BatchedRandomColorComponent>
+    public class BatchedCubeColourChangerSystem : BatchedSystem<ViewDataComponent, BatchedRandomColorComponent>
     {
-        public BatchedCubeColourChangerSystem(IComponentDatabase componentDatabase, IComponentTypeLookup componentTypeLookup, IReferenceBatchBuilderFactory batchBuilderFactory, IThreadHandler threadHandler, IObservableGroupManager observableGroupManager) : base(componentDatabase, componentTypeLookup, batchBuilderFactory, threadHandler, observableGroupManager)
+        public BatchedCubeColourChangerSystem(IComponentDatabase componentDatabase, IEntityComponentAccessor entityComponentAccessor, IComputedComponentGroupRegistry computedComponentGroupRegistry, IThreadHandler threadHandler) : base(componentDatabase, entityComponentAccessor, computedComponentGroupRegistry, threadHandler)
         {}
-        
-        protected override Observable<bool> ReactWhen()
-        { return Observable.EveryUpdate().Select(x => true); }
 
-        protected override void Process(int entityId, ViewDataComponent viewDataComponent, BatchedRandomColorComponent randomColorComponent)
+        protected override Observable<Unit> ReactWhen()
+        { return Observable.EveryUpdate().Select(x => Unit.Default); }
+
+        protected override void Process(Entity entity, ViewDataComponent viewDataComponent, BatchedRandomColorComponent randomColorComponent)
         {
             // We just quit out if there is no change for this entity
             if (!randomColorComponent.HasChanged) { return; }

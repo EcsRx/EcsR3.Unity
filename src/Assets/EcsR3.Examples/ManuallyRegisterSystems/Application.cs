@@ -28,8 +28,8 @@ namespace EcsR3.Examples.ManuallyRegisterSystems
 
         protected override void ApplicationStarted()
         {
-            var entity = EntityCollection.CreateEntity();
-            entity.AddComponents(new ViewComponent());
+            var entity = EntityCollection.Create();
+            EntityComponentAccessor.AddComponents(entity, new ViewComponent());
         }
     }
 }

@@ -3,12 +3,8 @@ using EcsR3.Examples.BatchedRandomReactions.Components;
 using EcsR3.Examples.RandomReactions.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
-using EcsR3.Infrastructure.Extensions;
-using EcsR3.Unity;
-using EcsR3.Unity.Extensions;
 using EcsR3.Plugins.Views.Components;
 using EcsR3.Zenject;
-using EcsR3.Zenject.Extensions;
 using SystemsR3.Pools.Config;
 using UnityEngine;
 
@@ -35,11 +31,11 @@ namespace EcsR3.Examples.RandomReactions
         {
             for (var i = 0; i < _cubeCount; i++)
             {
-                var viewEntity = EntityCollection.CreateEntity();
-                viewEntity.AddComponents(new ViewComponent(), new RandomColorComponent());
+                var viewEntity = EntityCollection.Create();
+                EntityComponentAccessor.AddComponents(viewEntity, new ViewComponent(), new RandomColorComponent());
             }
 
-            var group = ObservableGroupManager.GetObservableGroup(new Group(typeof(ViewComponent), typeof(RandomColorComponent)));
+            var group = ComputedEntityGroupRegistry.GetComputedGroup(new Group(typeof(ViewComponent), typeof(RandomColorComponent)));
             Debug.Log($"There are {group.Count} entities out of {EntityCollection.Count} matching");
         }
     }

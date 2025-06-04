@@ -56,7 +56,7 @@ namespace EcsR3.UnityEditor.Editor
                         EditorGUILayout.LabelField(systemType.Name);
                         if (groupedSystem != null)
                         {
-                            var observableGroup = observableGroupManager.GetObservableGroup(groupedSystem.Group);
+                            var observableGroup = observableGroupManager.GetComputedGroup(groupedSystem.Group);
                             EditorGUILayout.LabelField($"{observableGroup.Count} Entities");
                         }
                     });

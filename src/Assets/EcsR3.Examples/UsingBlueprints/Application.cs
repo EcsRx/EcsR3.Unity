@@ -1,4 +1,5 @@
 ﻿using EcsR3.Examples.UsingBlueprints.Blueprints;
+using EcsR3.Extensions;
 using EcsR3.Infrastructure.Extensions;
 using EcsR3.Unity;
 using EcsR3.Unity.Extensions;
@@ -11,8 +12,8 @@ namespace EcsR3.Examples.UsingBlueprints
     {
         protected override void ApplicationStarted()
         {
-            EntityCollection.CreateEntity(new PlayerBlueprint("Player One"));
-            EntityCollection.CreateEntity(new PlayerBlueprint("Player Two", 150.0f));
+            EntityCollection.Create(EntityComponentAccessor, new PlayerBlueprint("Player One"));
+            EntityCollection.Create(EntityComponentAccessor, new PlayerBlueprint("Player Two", 150.0f));
         }
     }
 }

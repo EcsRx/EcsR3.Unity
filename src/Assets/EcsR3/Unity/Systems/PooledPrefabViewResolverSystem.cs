@@ -1,6 +1,7 @@
-using EcsR3.Collections.Entity;
-using SystemsR3.Events;
+using EcsR3.Collections.Entities;
 using EcsR3.Entities;
+using SystemsR3.Events;
+using EcsR3.Entities.Accessors;
 using EcsR3.Plugins.Views.Systems;
 using EcsR3.Plugins.Views.ViewHandlers;
 using EcsR3.Unity.Dependencies;
@@ -26,27 +27,25 @@ namespace EcsR3.Unity.Systems
             EntityCollection = entityCollection;            
         }
 
-        protected abstract void OnViewAllocated(GameObject view, IEntity entity);
-        protected abstract void OnViewRecycled(GameObject view, IEntity entity);
-
-        protected override void OnViewRecycled(object view, IEntity entity)
+        protected abstract void OnViewAllocated(GameObject view, Entity entity);
+        protected abstract void OnViewRecycled(GameObject view, Entity entity);
+        
+        protected override void OnViewRecycled(IEntityComponentAccessor accessor, object view, Entity entity)
         {
             var gameObject = view as GameObject;
             gameObject.transform.parent = null;
 
             var entityView = gameObject.GetComponent<EntityView>();
-            entityView.Entity = null;
-            entityView.EntityCollection = null;
+            entityView.Entity = new Entity(-1, 0);
 
             OnViewRecycled(gameObject, entity);
         }
 
-        protected override void OnViewAllocated(object view, IEntity entity)
+        protected override void OnViewAllocated(IEntityComponentAccessor accessor, object view, Entity entity)
         {
             var gameObject = view as GameObject;
             var entityView = gameObject.GetComponent<EntityView>();
             entityView.Entity = entity;
-            entityView.EntityCollection = EntityCollection;
 
             OnViewAllocated(gameObject, entity);
         }

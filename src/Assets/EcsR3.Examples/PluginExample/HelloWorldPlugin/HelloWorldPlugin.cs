@@ -18,11 +18,11 @@ namespace EcsR3.Examples.PluginExample.HelloWorldPlugin
             container.Bind<OutputHelloWorldSystem>();
         }
 
-        public IEnumerable<ISystem> GetSystemsForRegistration(IDependencyResolver container)
+        public IEnumerable<ISystem> GetSystemsForRegistration(IDependencyResolver resolver)
         {
-            return new[]
+            return new ISystem[]
             {
-                container.Resolve<OutputHelloWorldSystem>()
+                resolver.Resolve<OutputHelloWorldSystem>()
             };
         }
     }

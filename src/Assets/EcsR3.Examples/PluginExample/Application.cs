@@ -1,7 +1,5 @@
 ﻿using EcsR3.Examples.PluginExample.HelloWorldPlugin.components;
 using EcsR3.Extensions;
-using EcsR3.Unity;
-using EcsR3.Unity.Extensions;
 using EcsR3.Zenject;
 
 namespace EcsR3.Examples.PluginExample
@@ -16,8 +14,8 @@ namespace EcsR3.Examples.PluginExample
         
         protected override void ApplicationStarted()
         {
-            var entity = EntityCollection.CreateEntity();
-            entity.AddComponent<SayHelloWorldComponent>();
+            var entity = EntityCollection.Create();
+            EntityComponentAccessor.CreateComponent<SayHelloWorldComponent>(entity);
         }
     }
 }

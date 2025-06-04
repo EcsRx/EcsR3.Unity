@@ -1,9 +1,9 @@
-using EcsR3.Collections;
 using EcsR3.Components.Database;
-using EcsR3.Components.Lookups;
+using EcsR3.Computeds.Components.Registries;
+using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.BatchedRandomReactions.Components;
-using EcsR3.Plugins.Batching.Factories;
-using EcsR3.Plugins.Batching.Systems;
+using EcsR3.Systems.Batching.Convention;
 using R3;
 using SystemsR3.Attributes;
 using SystemsR3.Threading;
@@ -19,18 +19,18 @@ namespace EcsR3.Examples.BatchedRandomReactions.Systems
     /// separate batches, but for here as its only 2 systems we will just share given how many entities there are
     /// </summary>
     [Priority(PriorityTypes.Higher)]
-    public class BatchedColorChangingSystem : ReferenceBatchedSystem<ViewDataComponent, BatchedRandomColorComponent>
+    public class BatchedColorChangingSystem : BatchedSystem<ViewDataComponent, BatchedRandomColorComponent>
     {
         private readonly float MaxDelay = 5.0f;
         private readonly float MinDelay = 1.0f;
 
-        public BatchedColorChangingSystem(IComponentDatabase componentDatabase, IComponentTypeLookup componentTypeLookup, IReferenceBatchBuilderFactory batchBuilderFactory, IThreadHandler threadHandler, IObservableGroupManager observableGroupManager) : base(componentDatabase, componentTypeLookup, batchBuilderFactory, threadHandler, observableGroupManager)
+        public BatchedColorChangingSystem(IComponentDatabase componentDatabase, IEntityComponentAccessor entityComponentAccessor, IComputedComponentGroupRegistry computedComponentGroupRegistry, IThreadHandler threadHandler) : base(componentDatabase, entityComponentAccessor, computedComponentGroupRegistry, threadHandler)
         {}
 
-        protected override Observable<bool> ReactWhen()
-        { return Observable.EveryUpdate().Select(x => true); }
+        protected override Observable<Unit> ReactWhen()
+        { return Observable.EveryUpdate().Select(x => Unit.Default); }
 
-        protected override void Process(int entityId, ViewDataComponent _, BatchedRandomColorComponent randomColorComponent)
+        protected override void Process(Entity entity, ViewDataComponent _, BatchedRandomColorComponent randomColorComponent)
         {
             randomColorComponent.Elapsed += Time.deltaTime;
 

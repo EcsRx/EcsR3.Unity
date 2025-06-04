@@ -1,5 +1,6 @@
 ﻿using EcsR3.Blueprints;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.PooledViews.Components;
 using EcsR3.Extensions;
 using EcsR3.Plugins.Views.Components;
@@ -18,7 +19,7 @@ namespace EcsR3.Examples.PooledViews.Blueprints
             _startPosition = startPosition;
         }
 
-        public void Apply(IEntity entity)
+        public void Apply(IEntityComponentAccessor entityComponentAccessor, Entity entity)
         {
             var selfDestructComponent = new SelfDestructComponent
             {
@@ -27,7 +28,7 @@ namespace EcsR3.Examples.PooledViews.Blueprints
             };
 
             var viewComponent = new ViewComponent();
-            entity.AddComponents(selfDestructComponent, viewComponent);
+            entityComponentAccessor.AddComponents(entity, selfDestructComponent, viewComponent);
         }
     }
 }

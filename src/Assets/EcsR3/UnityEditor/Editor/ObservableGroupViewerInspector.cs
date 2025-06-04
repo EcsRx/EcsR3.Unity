@@ -38,7 +38,7 @@ namespace EcsR3.UnityEditor.Editor
             
             EditorGUIHelper.WithLabel("Active Observable Groups");
             EditorGUILayout.Space();
-            foreach (var observableGroup in observableGroupManager.ObservableGroups.OrderByDescending(x => x.Count))
+            foreach (var observableGroup in observableGroupManager.ComputedGroups.OrderByDescending(x => x.Count))
             {
                 if (!VisibleStates.ContainsKey(observableGroup.Group))
                 { VisibleStates.Add(observableGroup.Group, new VisibilityState()); }

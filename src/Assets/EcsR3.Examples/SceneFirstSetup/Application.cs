@@ -9,13 +9,13 @@ namespace EcsR3.Examples.SceneFirstSetup
     {
         protected override void ApplicationStarted()
         {
-            var cubeEntity = EntityCollection.CreateEntity();
-            cubeEntity.AddComponent<ViewComponent>();
-            cubeEntity.AddComponent<CubeComponent>();
+            var cubeEntity = EntityCollection.Create();
+            EntityComponentAccessor.CreateComponent<ViewComponent>(cubeEntity);
+            EntityComponentAccessor.CreateComponent<CubeComponent>(cubeEntity);
 
-            var sphereEntity = EntityCollection.CreateEntity();
-            sphereEntity.AddComponent<ViewComponent>();
-            sphereEntity.AddComponent<SphereComponent>();
+            var sphereEntity = EntityCollection.Create();
+            EntityComponentAccessor.CreateComponent<ViewComponent>(sphereEntity);
+            EntityComponentAccessor.CreateComponent<SphereComponent>(sphereEntity);
         }
     }
 }

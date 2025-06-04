@@ -1,8 +1,5 @@
 ﻿using System;
 using SystemsR3.Systems.Conventional;
-using EcsR3.Groups;
-using EcsR3.Groups.Observable;
-using EcsR3.Systems;
 using R3;
 using UnityEngine;
 
