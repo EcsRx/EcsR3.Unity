@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EcsR3.Collections;
-using EcsR3.Collections.Entity;
+using EcsR3.Collections.Entities;
 using EcsR3.Components.Database;
+using EcsR3.Computeds.Entities.Registries;
+using EcsR3.Entities.Accessors;
 using EcsR3.Infrastructure;
 using EcsR3.Infrastructure.Modules;
-using EcsR3.Plugins.Batching;
 using EcsR3.Plugins.Views;
 using EcsR3.Unity.Modules;
 using SystemsR3.Events;
@@ -29,8 +29,9 @@ namespace EcsR3.Unity
         public ISystemExecutor SystemExecutor { get; private set; }
         public IEventSystem EventSystem { get; private set; }
         public IEntityCollection EntityCollection { get; private set; }
+        public IEntityComponentAccessor EntityComponentAccessor { get; private set; }
         public IComponentDatabase ComponentDatabase { get; private set; }
-        public IObservableGroupManager ObservableGroupManager { get; private set; }
+        public IComputedEntityGroupRegistry ComputedEntityGroupRegistry { get; private set; }
         public IEnumerable<ISystemsR3Plugin> Plugins => _plugins;
         
         protected List<ISystemsR3Plugin> _plugins { get; } = new List<ISystemsR3Plugin>();
@@ -61,7 +62,6 @@ namespace EcsR3.Unity
         protected virtual void LoadPlugins()
         {
             RegisterPlugin(new ViewsPlugin());
-            RegisterPlugin(new BatchPlugin());
         }
 
         /// <summary>
@@ -89,7 +89,8 @@ namespace EcsR3.Unity
             EventSystem = DependencyResolver.Resolve<IEventSystem>();
             EntityCollection = DependencyResolver.Resolve<IEntityCollection>();
             ComponentDatabase = DependencyResolver.Resolve<IComponentDatabase>();
-            ObservableGroupManager = DependencyResolver.Resolve<IObservableGroupManager>();
+            ComputedEntityGroupRegistry = DependencyResolver.Resolve<IComputedEntityGroupRegistry>();
+            EntityComponentAccessor = DependencyResolver.Resolve<IEntityComponentAccessor>();
         }
         
         /// <summary>

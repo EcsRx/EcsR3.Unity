@@ -1,5 +1,6 @@
 ﻿using EcsR3.Blueprints;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.UsingBlueprints.Components;
 using EcsR3.Extensions;
 
@@ -16,9 +17,9 @@ namespace EcsR3.Examples.UsingBlueprints.Blueprints
             Name = name;
         }
 
-        public void Apply(IEntity entity)
+        public void Apply(IEntityComponentAccessor entityComponentAccessor, Entity entity)
         {
-            entity.AddComponents(new HasName { Name = Name }, 
+            entityComponentAccessor.AddComponents(entity, new HasName { Name = Name }, 
                 new WithHealthComponent { CurrentHealth = DefaultHealth, MaxHealth = DefaultHealth});
         }
     }

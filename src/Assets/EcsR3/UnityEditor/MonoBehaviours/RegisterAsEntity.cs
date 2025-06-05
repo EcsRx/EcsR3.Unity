@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using EcsR3.Collections.Entity;
+using EcsR3.Collections.Entities;
 using EcsR3.Components;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Extensions;
 using EcsR3.Plugins.Views.Components;
 using EcsR3.Unity.MonoBehaviours;
@@ -17,6 +18,9 @@ namespace EcsR3.UnityEditor.MonoBehaviours
     {
         [Inject]
         public IEntityCollection EntityCollection { get; private set; }
+        
+        [Inject]
+        public IEntityComponentAccessor EntityComponentAccessor { get; private set; }
         
         [SerializeField]
         public int EntityId;
@@ -72,12 +76,12 @@ namespace EcsR3.UnityEditor.MonoBehaviours
             HasDeserialized = true;
         }
         
-        public IEntity CreateEntity()
+        public Entity CreateEntity()
         {
             if(EntityId > 0)
-            { return EntityCollection.CreateEntity(null, EntityId); }
+            { return EntityCollection.Create(EntityId); }
 
-            return EntityCollection.CreateEntity();
+            return EntityCollection.Create();
         }
         
         [Inject]
@@ -85,22 +89,21 @@ namespace EcsR3.UnityEditor.MonoBehaviours
         {
             if (!gameObject.activeInHierarchy || !gameObject.activeSelf) { return; }
 
-            var createdEntity = CreateEntity();
+            var entityId = CreateEntity();
             
             DeserializeState();
-            createdEntity.AddComponents(EntityData.Components.ToArray());
+            EntityComponentAccessor.AddComponents(entityId, EntityData.Components.ToArray());
             
-            createdEntity.AddComponents(new ViewComponent { View = gameObject });
-            SetupEntityBinding(createdEntity);
+            EntityComponentAccessor.AddComponents(entityId, new ViewComponent { View = gameObject });
+            SetupEntityBinding(entityId);
 
             Destroy(this);
         }
 
-        private void SetupEntityBinding(IEntity entity)
+        private void SetupEntityBinding(Entity entity)
         {
             var entityBinding = gameObject.AddComponent<EntityView>();
             entityBinding.Entity = entity;
-            entityBinding.EntityCollection = EntityCollection;
         }
     }
 }

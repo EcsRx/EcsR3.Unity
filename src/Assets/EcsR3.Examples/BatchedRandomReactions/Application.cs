@@ -16,13 +16,13 @@ namespace EcsR3.Examples.BatchedRandomReactions
         {
             for (var i = 0; i < _cubeCount; i++)
             {
-                var viewEntity = EntityCollection.CreateEntity();
-                viewEntity.AddComponents(new ViewComponent(), 
+                var viewEntity = EntityCollection.Create();
+                EntityComponentAccessor.AddComponents(viewEntity, new ViewComponent(), 
                     new BatchedRandomColorComponent(){ NextChangeIn = Random.Range(0.1f, 2.0f)}, 
                     new ViewDataComponent());
             }
 
-            var group = ObservableGroupManager.GetObservableGroup(new Group(typeof(ViewComponent), typeof(BatchedRandomColorComponent), typeof(ViewDataComponent)));
+            var group = ComputedEntityGroupRegistry.GetComputedGroup(new Group(typeof(ViewComponent), typeof(BatchedRandomColorComponent), typeof(ViewDataComponent)));
             Debug.Log($"There are {group.Count} entities out of {EntityCollection.Count} matching");
         }
     }

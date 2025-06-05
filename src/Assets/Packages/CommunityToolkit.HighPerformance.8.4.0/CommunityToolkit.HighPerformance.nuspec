@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>CommunityToolkit.HighPerformance</id>
+    <version>8.4.0</version>
+    <title>.NET Community Toolkit - High Performance</title>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Icon.png</icon>
+    <projectUrl>https://github.com/CommunityToolkit/dotnet</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/CommunityToolkit/dotnet/main/build/nuget.png</iconUrl>
+    <description>This package includes high performance .NET helpers such as:
+      - Memory2D&lt;T&gt; and Span2D&lt;T&gt;: two types providing fast and allocation-free abstraction over 2D memory areas.
+      - ArrayPoolBufferWriter&lt;T&gt;: an IBufferWriter&lt;T&gt; implementation using pooled arrays, which also supports IMemoryOwner&lt;T&gt;.
+      - MemoryBufferWriter&lt;T&gt;: an IBufferWriter&lt;T&gt;: implementation that can wrap external Memory&lt;T&gt;: instances.
+      - MemoryOwner&lt;T&gt;: an IMemoryOwner&lt;T&gt; implementation with an embedded length and a fast Span&lt;T&gt; accessor.
+      - SpanOwner&lt;T&gt;: a stack-only type with the ability to rent a buffer of a specified length and getting a Span&lt;T&gt; from it.
+      - StringPool: a configurable pool for string instances that be used to minimize allocations when creating multiple strings from char buffers.
+      - String, array, Memory&lt;T&gt;, Span&lt;T&gt; extensions and more, all focused on high performance.
+      - HashCode&lt;T&gt;: a SIMD-enabled extension of HashCode to quickly process sequences of values.
+      - BitHelper: a class with helper methods to perform bit operations on numeric types.
+      - ParallelHelper: helpers to work with parallel code in a highly optimized manner.
+      - Box&lt;T&gt;: a type mapping boxed value types and exposing some utility and high performance methods.
+      - Ref&lt;T&gt;: a stack-only struct that can store a reference to a value of a specified type.
+      - NullableRef&lt;T&gt;: a stack-only struct similar to Ref&lt;T&gt;, which also supports nullable references.</description>
+    <releaseNotes>https://github.com/CommunityToolkit/dotnet/releases</releaseNotes>
+    <copyright>(c) .NET Foundation and Contributors. All rights reserved.</copyright>
+    <tags>dotnet Community Toolkit .NET Parallel Performance Unsafe Span Memory String StringPool Array Stream Buffer Extensions Helpers</tags>
+    <repository type="git" url="https://github.com/CommunityToolkit/dotnet" commit="638b41dad30dffabb123a39aa38eabc7e3721371" />
+    <dependencies>
+      <group targetFramework="net7.0" />
+      <group targetFramework="net8.0" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Bcl.HashCode" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.6.0" exclude="Build,Analyzers" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="6.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Tasks.Extensions" version="4.6.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="6.1.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

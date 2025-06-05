@@ -1,5 +1,6 @@
-﻿using EcsR3.Collections.Entity;
+﻿using EcsR3.Collections.Entities;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.BatchedRandomReactions.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
@@ -43,13 +44,13 @@ namespace EcsR3.Examples.BatchedRandomReactions.ViewResolvers
             _nextPosition.z += _spacing;
         }
 
-        protected override void OnViewCreated(IEntity entity, GameObject view)
+        protected override void OnViewCreated(IEntityComponentAccessor entityComponentAccessor, Entity entity, GameObject view)
         {
             view.transform.position = _nextPosition;
             view.transform.SetParent(Parent);
 
             // Get the renderer material and cache it to constantly call GetComponent
-            var viewDataComponent = entity.GetComponent<ViewDataComponent>();
+            var viewDataComponent = entityComponentAccessor.GetComponent<ViewDataComponent>(entity);
             viewDataComponent.Material = view.GetComponent<Renderer>().material;
             
             IncrementRow();

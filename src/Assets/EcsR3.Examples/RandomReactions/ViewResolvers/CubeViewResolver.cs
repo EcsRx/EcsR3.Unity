@@ -1,6 +1,7 @@
-﻿using SystemsR3.Events;
-using EcsR3.Collections.Entity;
+﻿using EcsR3.Collections.Entities;
+using SystemsR3.Events;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Unity.Dependencies;
 using EcsR3.Unity.Systems;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace EcsR3.Examples.RandomReactions.ViewResolvers
             _nextPosition.z += _spacing;
         }
 
-        protected override void OnViewCreated(IEntity entity, GameObject view)
+        protected override void OnViewCreated(IEntityComponentAccessor entityComponentAccessor, Entity entity, GameObject view)
         {
             view.transform.position = _nextPosition;
             view.transform.SetParent(Parent);

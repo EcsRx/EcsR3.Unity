@@ -1,12 +1,7 @@
 ﻿using EcsR3.Examples.SimpleMovement.Components;
 using EcsR3.Extensions;
-using EcsR3.Infrastructure.Extensions;
-using EcsR3.Unity;
-using EcsR3.Unity.Extensions;
 using EcsR3.Plugins.Views.Components;
 using EcsR3.Zenject;
-using EcsR3.Zenject.Extensions;
-using UnityEngine;
 
 namespace EcsR3.Examples.SimpleMovement
 {
@@ -14,8 +9,8 @@ namespace EcsR3.Examples.SimpleMovement
     {        
         protected override void ApplicationStarted()
         {
-            var viewEntity = EntityCollection.CreateEntity();
-            viewEntity.AddComponents(new ViewComponent(), 
+            var viewEntity = EntityCollection.Create();
+            EntityComponentAccessor.AddComponents(viewEntity, new ViewComponent(), 
                 new PlayerControlledComponent(), new CameraFollowsComponent());
         }
     }

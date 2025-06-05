@@ -1,12 +1,13 @@
-﻿using EcsR3.Collections.Entity;
+﻿using EcsR3.Collections.Entities;
+using EcsR3.Entities;
 using SystemsR3.Events;
 using EcsR3.Unity.Dependencies;
-using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Extensions;
 using EcsR3.Groups;
 using EcsR3.Unity.MonoBehaviours;
 using EcsR3.Plugins.Views.Components;
-using EcsR3.Systems;
+using EcsR3.Systems.Reactive;
 using R3;
 using R3.Triggers;
 using UnityEngine;
@@ -28,12 +29,12 @@ namespace EcsR3.Unity.Systems
             Instantiator = instantiator;
         }
 
-        public abstract GameObject CreateView(IEntity entity);
-        public abstract void DestroyView(IEntity entity, GameObject view);
+        public abstract GameObject CreateView(Entity entity);
+        public abstract void DestroyView(Entity entity, GameObject view);
         
-        public void Setup(IEntity entity)
+        public void Setup(IEntityComponentAccessor accessor, Entity entity)
         {
-            var viewComponent = entity.GetComponent<ViewComponent>();
+            var viewComponent = accessor.GetComponent<ViewComponent>(entity);
             if (viewComponent.View != null) { return; }
             
             var viewGameObject = CreateView(entity);
@@ -44,20 +45,19 @@ namespace EcsR3.Unity.Systems
             {
                 entityBinding = viewGameObject.AddComponent<EntityView>();
                 entityBinding.Entity = entity;
-                entityBinding.EntityCollection = EntityCollection;
             }
 
             if (viewComponent.DestroyWithView)
             {
                 viewGameObject.OnDestroyAsObservable()
-                    .Subscribe(x => entityBinding.EntityCollection.RemoveEntity(entity.Id))
+                    .Subscribe(x => EntityCollection.Remove(entity))
                     .AddTo(viewGameObject);
             }
         }
         
-        public void Teardown(IEntity entity)
+        public void Teardown(IEntityComponentAccessor accessor, Entity entity)
         {
-            var component = entity.GetComponent<ViewComponent>();
+            var component = accessor.GetComponent<ViewComponent>(entity);
             DestroyView(entity, component.View as GameObject);
         }
     }

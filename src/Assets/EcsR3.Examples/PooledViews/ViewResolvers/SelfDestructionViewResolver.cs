@@ -1,6 +1,7 @@
-﻿using EcsR3.Collections.Entity;
+﻿using EcsR3.Collections.Entities;
 using SystemsR3.Events;
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.PooledViews.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
@@ -16,22 +17,25 @@ namespace EcsR3.Examples.PooledViews.ViewResolvers
     {
         public override IGroup Group { get; } = new Group(typeof(SelfDestructComponent), typeof(ViewComponent));
         public override PoolConfig PoolConfig { get; } = new PoolConfig(10, 5);
+        public IEntityComponentAccessor EntityComponentAccessor { get; }
 
-        public SelfDestructionViewResolver(IUnityInstantiator instantiator, IEntityCollection entityCollection, IEventSystem eventSystem)
+        public SelfDestructionViewResolver(IUnityInstantiator instantiator, IEntityCollection entityCollection, IEventSystem eventSystem, IEntityComponentAccessor entityComponentAccessor)
             : base(instantiator, entityCollection, eventSystem)
-        {}
+        {
+            EntityComponentAccessor = entityComponentAccessor;
+        }
 
         protected override GameObject PrefabTemplate { get; } = Resources.Load("PooledPrefab") as GameObject;
         
-        protected override void OnViewAllocated(GameObject view, IEntity entity)
+        protected override void OnViewAllocated(GameObject view, Entity entity)
         {
             view.name = $"pooled-active-{entity.Id}";
             
-            var selfDestructComponent = entity.GetComponent<SelfDestructComponent>();
+            var selfDestructComponent = EntityComponentAccessor.GetComponent<SelfDestructComponent>(entity);
             view.transform.position = selfDestructComponent.StartingPosition;
         }
 
-        protected override void OnViewRecycled(GameObject view, IEntity entity)
+        protected override void OnViewRecycled(GameObject view, Entity entity)
         {
             view.name = "pooled-inactive";
         }

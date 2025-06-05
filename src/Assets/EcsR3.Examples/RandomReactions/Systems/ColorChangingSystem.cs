@@ -1,8 +1,10 @@
 using EcsR3.Entities;
+using EcsR3.Entities.Accessors;
 using EcsR3.Examples.RandomReactions.Components;
 using EcsR3.Extensions;
 using EcsR3.Groups;
 using EcsR3.Systems;
+using EcsR3.Systems.Reactive;
 using SystemsR3.Scheduling;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,15 +18,15 @@ namespace EcsR3.Examples.RandomReactions.Systems
 
         public IGroup Group => new Group(typeof(RandomColorComponent));
 
-        public void Setup(IEntity entity)
+        public void Setup(IEntityComponentAccessor entityComponentAccessor, Entity entity)
         {
-            var randomColorComponent = entity.GetComponent<RandomColorComponent>();
+            var randomColorComponent = entityComponentAccessor.GetComponent<RandomColorComponent>(entity);
             randomColorComponent.NextChangeIn = Random.Range(MinDelay, MaxDelay);
         }
         
-        public void Process(IEntity entity, ElapsedTime elapsedTime)
+        public void Process(IEntityComponentAccessor entityComponentAccessor, Entity entity, ElapsedTime elapsedTime)
         {
-            var randomColorComponent = entity.GetComponent<RandomColorComponent>();
+            var randomColorComponent = entityComponentAccessor.GetComponent<RandomColorComponent>(entity);
             randomColorComponent.Elapsed += Time.deltaTime;
 
             if (!(randomColorComponent.Elapsed >= randomColorComponent.NextChangeIn))
