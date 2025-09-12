@@ -548,7 +548,7 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.39f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Infrastructure">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Infrastructure.11.0.74\lib\netstandard2.1\EcsR3.Infrastructure.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Infrastructure.11.1.100\lib\netstandard2.1\EcsR3.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Zenject-usage">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
@@ -563,10 +563,10 @@
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\R3.1.3.0\lib\netstandard2.1\R3.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3.Infrastructure">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Infrastructure.11.0.74\lib\netstandard2.1\SystemsR3.Infrastructure.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Infrastructure.11.1.100\lib\netstandard2.1\SystemsR3.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.11.0.74\lib\netstandard2.1\EcsR3.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.11.1.100\lib\netstandard2.1\EcsR3.dll</HintPath>
     </Reference>
     <Reference Include="NuGetForUnity.PluginAPI">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\NuGet\Editor\NuGetForUnity.PluginAPI.dll</HintPath>
@@ -575,13 +575,13 @@
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.11.0.74\lib\netstandard2.1\SystemsR3.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.11.1.100\lib\netstandard2.1\SystemsR3.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Plugins.Transforms">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Transforms.11.0.74\lib\netstandard2.1\EcsR3.Plugins.Transforms.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Transforms.11.1.100\lib\netstandard2.1\EcsR3.Plugins.Transforms.dll</HintPath>
     </Reference>
     <Reference Include="SystemsR3.Plugins.Transforms">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Plugins.Transforms.11.0.74\lib\netstandard2.1\SystemsR3.Plugins.Transforms.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\SystemsR3.Plugins.Transforms.11.1.100\lib\netstandard2.1\SystemsR3.Plugins.Transforms.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -590,7 +590,7 @@
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\NuGet\Editor\NugetForUnity.dll</HintPath>
     </Reference>
     <Reference Include="EcsR3.Plugins.Views">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Views.11.0.74\lib\netstandard2.1\EcsR3.Plugins.Views.dll</HintPath>
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\EcsR3.Plugins.Views.11.1.100\lib\netstandard2.1\EcsR3.Plugins.Views.dll</HintPath>
     </Reference>
     <Reference Include="CommunityToolkit.HighPerformance">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Assets\Packages\CommunityToolkit.HighPerformance.8.4.0\lib\netstandard2.1\CommunityToolkit.HighPerformance.dll</HintPath>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>EcsR3</id>
+    <version>11.1.100</version>
+    <title>EcsR3</title>
+    <authors>Grofit (LP)</authors>
+    <licenseUrl>https://github.com/ecsrx/ecsr3/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ecsrx/ecsr3</projectUrl>
+    <description>A reactive take on the ECS pattern for .net game developers</description>
+    <tags>ecs r3 reactive patterns ioc game-development xna monogame unity</tags>
+    <repository type="git" commit="4b3aaee289aac14a1d84eef68f5cae368b92e436" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="SystemsR3" version="11.1.100" exclude="Build,Analyzers" />
+        <dependency id="CommunityToolkit.HighPerformance" version="8.4.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
