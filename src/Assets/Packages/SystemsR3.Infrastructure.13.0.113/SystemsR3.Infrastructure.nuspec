@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SystemsR3.Infrastructure</id>
+    <version>13.0.113</version>
+    <title>SystemsR3.Infrastructure</title>
+    <authors>Grofit (LP)</authors>
+    <licenseUrl>https://github.com/ecsr3/ecsr3/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ecsr3/ecsr3</projectUrl>
+    <description>A set of convention based classes to speed up the setup of projects using SystemsR3</description>
+    <tags>r3 reactive patterns ioc game-development view-separation xna monogame unity</tags>
+    <repository type="git" commit="d61a1c6bb1d53e7ea2d1d22591bda4105375b106" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="SystemsR3" version="13.0.113" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
