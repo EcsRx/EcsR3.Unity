@@ -30,7 +30,7 @@ namespace EcsR3.Examples.BatchedRandomReactions.Systems
         protected override Observable<Unit> ReactWhen()
         { return Observable.EveryUpdate().Select(x => Unit.Default); }
 
-        protected override void Process(Entity entity, ViewDataComponent _, BatchedRandomColorComponent randomColorComponent)
+        protected override void Process(Entity entity, ref ViewDataComponent _, ref BatchedRandomColorComponent randomColorComponent)
         {
             randomColorComponent.Elapsed += Time.deltaTime;
 
