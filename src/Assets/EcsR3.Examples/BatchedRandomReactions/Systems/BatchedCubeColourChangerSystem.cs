@@ -23,7 +23,7 @@ namespace EcsR3.Examples.BatchedRandomReactions.Systems
         protected override Observable<Unit> ReactWhen()
         { return Observable.EveryUpdate().Select(x => Unit.Default); }
 
-        protected override void Process(Entity entity, ViewDataComponent viewDataComponent, BatchedRandomColorComponent randomColorComponent)
+        protected override void Process(Entity entity, ref ViewDataComponent viewDataComponent, ref BatchedRandomColorComponent randomColorComponent)
         {
             // We just quit out if there is no change for this entity
             if (!randomColorComponent.HasChanged) { return; }
