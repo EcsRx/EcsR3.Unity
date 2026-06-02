@@ -43,6 +43,7 @@
   <ItemGroup>
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
+    <Analyzer Include="E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\PackageCache\com.gustavopsantos.reflex@86569ca217\Injectors\Source-Generator\Reflex.Generator.Injector.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EcsR3\UnityEditor\Editor\EditorInputs\Basic\ReadOnlyStringEditorInput.cs" />
@@ -803,6 +804,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Reflex">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Reflex.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
@@ -833,14 +837,17 @@
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
+    <Reference Include="Reflex.Editor">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Reflex.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

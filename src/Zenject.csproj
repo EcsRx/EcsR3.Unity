@@ -143,8 +143,8 @@
     <Compile Include="Assets\Plugins\Zenject\Source\Runtime\SceneContextRegistryAdderAndRemover.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Util\ActionInstaller.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Conventions\ConventionBindInfo.cs" />
-    <Compile Include="Assets\Plugins\Zenject\Source\Util\ReflectionUtil.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder5.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Util\ReflectionUtil.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Providers\IFactoryProvider.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Util\ValidationUtil.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Install\Contexts\RunnableContext.cs" />

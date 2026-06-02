@@ -1,8 +1,4 @@
-﻿using EcsR3.Infrastructure.Extensions;
-using EcsR3.Unity;
-using EcsR3.Unity.Extensions;
-using EcsR3.Zenject;
-using EcsR3.Zenject.Extensions;
+﻿using EcsR3.Zenject;
 
 namespace EcsR3.Examples.ManualSystems
 {
