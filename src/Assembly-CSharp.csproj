@@ -43,6 +43,7 @@
   <ItemGroup>
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
+    <Analyzer Include="E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\PackageCache\com.gustavopsantos.reflex@86569ca217\Injectors\Source-Generator\Reflex.Generator.Injector.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EcsR3.Examples\PluginExample\HelloWorldPlugin\systems\OutputHelloWorldSystem.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Assets\EcsR3.Examples\GameObjectBinding\ViewResolvers\SphereViewResolver.cs" />
     <Compile Include="Assets\EcsR3\Unity\Extensions\EntityViewExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\PooledViews\ViewResolvers\SelfDestructionViewResolver.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\Extensions\ReflexExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\RandomReactions\Components\RandomColorComponent.cs" />
     <Compile Include="Assets\EcsR3.Examples\SceneFirstSetup\ViewResolvers\SphereViewResolver.cs" />
     <Compile Include="Assets\EcsR3.Examples\UsingBlueprints\Components\WithHealthComponent.cs" />
@@ -70,15 +72,18 @@
     <Compile Include="Assets\EcsR3.Examples\CustomGameObjectHandling\Components\PlayerControlledComponent.cs" />
     <Compile Include="Assets\EcsR3.Examples\PluginExample\HelloWorldPlugin\components\SayHelloWorldComponent.cs" />
     <Compile Include="Assets\EcsR3.Examples\SimpleMovement\Systems\CameraFollowSystem.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\Dependencies\ReflexDependencyRegistry.cs" />
     <Compile Include="Assets\EcsR3.Examples\CustomGameObjectHandling\Application.cs" />
     <Compile Include="Assets\EcsR3\Unity\Extensions\IUnityInstantiatorExtensions.cs" />
     <Compile Include="Assets\EcsR3\Unity\UnityEcsR3ApplicationBehaviour.cs" />
     <Compile Include="Assets\EcsR3.Examples\SimpleMovement\Components\CameraFollows.cs" />
     <Compile Include="Assets\EcsR3.Examples\PooledViews\Components\SelfDestructComponent.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\Helpers\BindSystemsInNamespace.cs" />
     <Compile Include="Assets\EcsR3.Examples\UsingBlueprints\Application.cs" />
     <Compile Include="Assets\EcsR3.Examples\PooledViews\Systems\SelfDestructionSystem.cs" />
     <Compile Include="Assets\EcsR3.Examples\PluginExample\Application.cs" />
     <Compile Include="Assets\EcsR3\Zenject\EcsR3ApplicationBehaviour.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\EcsR3ApplicationBehaviour.cs" />
     <Compile Include="Assets\EcsR3.Examples\CustomGameObjectHandling\Systems\CustomViewSetupSystem.cs" />
     <Compile Include="Assets\EcsR3.Examples\SimpleMovement\Systems\PlayerControlSystem.cs" />
     <Compile Include="Assets\EcsR3\Unity\Systems\PrefabViewResolverSystem.cs" />
@@ -116,6 +121,7 @@
     <Compile Include="Assets\EcsR3.Examples\SceneFirstSetup\Components\SphereComponent.cs" />
     <Compile Include="Assets\EcsR3.Examples\SceneFirstSetup\Components\TestComponent.cs" />
     <Compile Include="Assets\EcsR3\Unity\Extensions\ViewComponentExtensions.cs" />
+    <Compile Include="Assets\EcsR3\Zenject\Extensions\ZenjectExtensions.cs" />
     <Compile Include="Assets\EcsR3\Unity\Extensions\ISystemExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\UsingBlueprints\Systems\PlayerReportingSystem.cs" />
     <Compile Include="Assets\EcsR3.Examples\BatchedRandomReactions\Systems\BatchedCubeColourChangerSystem.cs" />
@@ -131,9 +137,10 @@
     <Compile Include="Assets\EcsR3\Unity\Scheduling\UnityUpdateScheduler.cs" />
     <Compile Include="Assets\EcsR3.Examples\CustomGameObjectHandling\Components\CustomViewComponent.cs" />
     <Compile Include="Assets\EcsR3\Zenject\Dependencies\ZenjectDependencyContainer.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\Installers\AutoBindSystemsInstaller.cs" />
     <Compile Include="Assets\EcsR3\UnityEditor\MonoBehaviours\RegisterAsEntity.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\Dependencies\ReflexDependencyResolver.cs" />
     <Compile Include="Assets\EcsR3.Examples\PooledViews\Blueprints\SelfDestructBlueprint.cs" />
-    <Compile Include="Assets\EcsR3\Zenject\Extensions\IZenjectExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\BatchedRandomReactions\Systems\ColorChangingSystem.cs" />
     <None Include="Assets\Packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.xml" />
     <None Include="Assets\Packages\System.Threading.Channels.8.0.0\useSharedDesignerContext.txt" />
@@ -829,6 +836,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Reflex">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Reflex.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
@@ -859,14 +869,17 @@
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
+    <Reference Include="Reflex.Editor">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Reflex.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>E:\Code\open-source\ecsrx\EcsR3.Unity\src\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
