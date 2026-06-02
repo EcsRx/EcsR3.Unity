@@ -60,10 +60,10 @@
     <Compile Include="Assets\EcsR3\Zenject\Dependencies\ZenjectDependencyResolver.cs" />
     <Compile Include="Assets\EcsR3.Examples\GameObjectLinking\Systems\CameraFollowSystem.cs" />
     <Compile Include="Assets\EcsR3.Examples\UsingBlueprints\Components\HasName.cs" />
-    <Compile Include="Assets\EcsR3\Reflex\Extensions\IReflexExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\GameObjectBinding\ViewResolvers\SphereViewResolver.cs" />
     <Compile Include="Assets\EcsR3\Unity\Extensions\EntityViewExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\PooledViews\ViewResolvers\SelfDestructionViewResolver.cs" />
+    <Compile Include="Assets\EcsR3\Reflex\Extensions\ReflexExtensions.cs" />
     <Compile Include="Assets\EcsR3.Examples\RandomReactions\Components\RandomColorComponent.cs" />
     <Compile Include="Assets\EcsR3.Examples\SceneFirstSetup\ViewResolvers\SphereViewResolver.cs" />
     <Compile Include="Assets\EcsR3.Examples\UsingBlueprints\Components\WithHealthComponent.cs" />

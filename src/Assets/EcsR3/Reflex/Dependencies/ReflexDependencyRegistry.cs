@@ -9,11 +9,12 @@ namespace EcsR3.Reflex.Dependencies
 {
     public class ReflexDependencyRegistry : IDependencyRegistry
     {
+        private readonly Dictionary<(Type FromType, string Name), Type> _namedBindings = new();
+        
         private ContainerBuilder _containerBuilder;
         public object NativeRegistry => _containerBuilder;
+
         private ReflexDependencyResolver _resolver;
-        private bool _containerBuilt;
-        private readonly Dictionary<(Type FromType, string Name), Type> _namedBindings = new();
 
         public ReflexDependencyRegistry()
         {
@@ -23,9 +24,7 @@ namespace EcsR3.Reflex.Dependencies
         }
 
         public void LoadModule(IDependencyModule module)
-        {
-            module.Setup(this);
-        }
+        { module.Setup(this); }
 
         public void Bind(Type fromType, Type toType, BindingConfiguration configuration = null)
         {
@@ -37,29 +36,19 @@ namespace EcsR3.Reflex.Dependencies
                 return;
             }
 
-            // Store named bindings for later resolution
+            // TODO: This is a hack to work around lack of named bindings in Reflex, hopefully one day remove
             if (!string.IsNullOrEmpty(configuration.WithName))
-            {
-                _namedBindings[(fromType, configuration.WithName)] = toType;
-            }
+            { _namedBindings[(fromType, configuration.WithName)] = toType; }
 
             if (configuration.ToInstance != null)
-            {
-                _containerBuilder.RegisterValue(configuration.ToInstance, new[] { fromType });
-            }
+            { _containerBuilder.RegisterValue(configuration.ToInstance, new[] { fromType }); }
             else if (configuration.ToMethod != null)
             {
-                _containerBuilder.RegisterFactory(
-                    x => configuration.ToMethod(_resolver),
-                    toType,
-                    new[] { fromType },
-                    lifetime,
-                    Resolution.Lazy);
+                _containerBuilder.RegisterFactory(x => configuration.ToMethod(_resolver), 
+                    toType, new[] { fromType }, lifetime, Resolution.Lazy);
             }
             else
-            {
-                _containerBuilder.RegisterType(toType, new[] { fromType }, lifetime, Resolution.Lazy);
-            }
+            { _containerBuilder.RegisterType(toType, new[] { fromType }, lifetime, Resolution.Lazy); }
         }
 
         public void Bind(Type type, BindingConfiguration configuration = null)
@@ -81,8 +70,6 @@ namespace EcsR3.Reflex.Dependencies
         }
 
         public void Dispose()
-        {
-            _containerBuilder = null;
-        }
+        { _containerBuilder = null; }
     }
 }
