@@ -11,7 +11,7 @@ namespace EcsR3.Unity.MonoBehaviours
         public IEventSystem EventSystem { get; private set; }
 
         [Inject]
-        protected IInstantiator Instantiator { get; set; }
+        protected IUnityInstantiator Instantiator { get; set; }
 
         /// <summary>
         /// This is the point in which any injected dependencies will have been resolved for use
